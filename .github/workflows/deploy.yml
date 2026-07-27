@@ -33,10 +33,14 @@ jobs:
 
       - run: mkdocs build -f flightFramework/mkdocs.yml -d public/flightframework
 
-      - name: Debug files
+      - name: Debug MkDocs
         run: |
+          echo "=== ROOT ==="
+          find . -maxdepth 3 -type d
           echo "=== PUBLIC ==="
           find public -type f
+          echo "=== SITE ==="
+          find site -type f || true
 
       - uses: actions/upload-pages-artifact@v3
         with:
