@@ -33,6 +33,11 @@ jobs:
 
       - run: mkdocs build -f flightFramework/mkdocs.yml -d public/flightframework
 
+      - name: Debug files
+        run: |
+          echo "=== PUBLIC ==="
+          find public -type f
+
       - uses: actions/upload-pages-artifact@v3
         with:
           path: public
