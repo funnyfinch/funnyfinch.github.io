@@ -1,0 +1,77 @@
+site_name: flightframework
+site_url: https://cleverfinch.github.io/flightFramework/
+
+theme:
+  name: material
+  logo: assets/logo-white.svg
+  favicon: assets/logo.svg
+
+  palette:
+    - media: "(prefers-color-scheme)"
+      toggle:
+        icon: material/brightness-auto
+        name: Switch to dark mode
+
+    - media: "(prefers-color-scheme: dark)"
+      scheme: default 
+      toggle:
+        icon: material/weather-night
+        name: Switch to light mode
+      primary: light blue
+      accent: teal
+
+    - media: "(prefers-color-scheme: light)"
+      scheme: slate
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to system preference
+      primary: light blue
+      accent: teal
+   
+  features:
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.sections
+    - navigation.expand
+    - navigation.sections
+    - navigation.top
+
+    - toc.integrate
+    - toc.follow
+
+    - content.code.copy
+    - content.code.annotate
+    - search.suggest
+    - search.highlight
+
+# nav:
+#   - Home:
+#     - Overview: index.md
+#   - Installation:
+#     - Setup: installation.md
+#   - Tutorials:
+#     - First Project: tutorials/first-project.md
+#   - Concepts:
+#     - Scheduler: concepts/scheduler.md
+#     - State: concepts/state.md
+#     - Networking: concepts/networking.md
+#     - Schema: concepts/schema.md
+#   - API:
+#     - state: api/state
+
+nav:
+  - Home: index.md
+  - Installation: installation.md
+  #- Tutorials: tutorials/index.md
+  #- Concepts: concepts/index.md
+  - API:
+    - state: api/state.md
+    - signal: api/signal.md
+
+markdown_extensions:
+  - admonition
+  - pymdownx.highlight
+  - pymdownx.superfences
+
+extra_css:
+  - stylesheets/extra.css
