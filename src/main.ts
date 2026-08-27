@@ -101,3 +101,17 @@ document.querySelectorAll<HTMLElement>("[data-typewriter]").forEach((element) =>
 
     tick();
 })
+
+document.querySelectorAll(".tutorial-covers-toggle").forEach((button) => {
+    button.addEventListener("click", (event) => {
+        event.stopPropagation();
+
+        const wrapper = button.parentElement;
+
+        if (!wrapper) return;
+
+        const expanded = wrapper.classList.toggle("expanded");
+
+        button.setAttribute("aria-expanded", String(expanded));
+    });
+});

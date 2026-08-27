@@ -1,0 +1,130 @@
+.tutorial-hero {
+    display: flex;
+    justify-content: center;
+    font-size: 1.5rem;
+}
+
+.tutorial-card {
+    position: relative;
+    display: block;
+    border: 1px solid var(--line);
+    border-radius: var(--corner-radius);
+    padding: 1.7rem 1.2rem;
+    background-color: var(--bg-secondary);
+}
+
+.tutorial-cards {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+}
+
+.tutorial-card-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.tutorial-card-description {
+    font-weight: 400;
+    color: var(--text-secondary)
+}
+
+.tutorial-card-tags {
+    margin-top: 1rem;
+    display: flex;
+    gap: 0.5rem;
+}
+
+.tutorial-footer {
+    display: flex;
+}
+
+.tutorial-follow-button {
+    justify-self: end;
+}
+
+.tutorial-card-tag {
+    color: var(--text-alt);
+    border: 1px solid var(--line);
+    width: fit-content;
+    padding: 0 0.7rem;
+    border-radius: var(--corner-radius);
+    font-weight: 600;
+}
+
+.tutorial-cards code {
+    padding: 0.15em 0.4em;
+    border: 1px solid var(--line);
+    border-radius: 0.3em;
+
+    background:  var(--inline-code-bg);
+    color: var(--inline-code-text);
+
+    font-size: 0.9em;
+}
+
+
+.tutorial-card:hover,
+.tutorial-card:focus-visible {
+    animation: card-hover 0.2s ease;
+    animation-fill-mode: both;
+}
+
+@keyframes card-hover {
+    from {
+        transform: translateY(0);
+        box-shadow: none;
+    }
+
+    to {
+        transform: translateY(-6px);
+        box-shadow: 0 5px 20px var(--line);
+    }
+}
+
+.tutorial-covers-wrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+.tutorial-covers {
+    margin: 0 0 1.5rem 0;
+    padding-left: 1.25rem;
+}
+
+.tutorial-covers li:nth-child(n + 4) {
+    display: none;
+}
+
+.tutorial-covers-wrapper.expanded .tutorial-covers li:nth-child(n + 4) {
+    display: list-item;
+}
+
+.tutorial-covers-toggle {
+    margin-top: 0.75rem;
+    align-self: flex-start;
+
+    border: 0;
+    padding: 0;
+
+    background: none;
+    font: inherit;
+    cursor: pointer;
+}
+
+.show-less {
+    display: none;
+}
+
+.tutorial-covers-wrapper.expanded .show-more {
+    display: none;
+}
+
+.tutorial-covers-wrapper.expanded .show-less {
+    display: inline;
+}
+
+.tutorial-covers-label {
+    margin: 1rem 0 0 0;
+}
+

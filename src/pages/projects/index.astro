@@ -1,5 +1,7 @@
 ---
 import Layout from "../../components/layout.astro"
+import ProjectCard from "../../components/project-card.astro"
+import "./projects.css"
 ---
 
 <Layout>
@@ -8,6 +10,62 @@ import Layout from "../../components/layout.astro"
     </Fragment>
 
     <Fragment slot="body">
-        
+        <main class="content">
+            <h2 style="justify-self: center; margin-top: 0; font-size: 3rem;">all my projects</h2>
+
+            <div class="project-list">
+                <ProjectCard
+                    href="/flightframework/"
+                    featured={true};
+                    title="flightframework"
+                    description="a lightweight, clean, high-performance framework built for streamlining Roblox development"
+                    status="active"
+                    tags={["ROBLOX", "FRAMEWORK", "2026"]}
+                />
+
+                <ProjectCard
+                    href="/"
+                    title="Merge a Farm"
+                    description="satisfying incremental about merging crops, harvesting, selling them at the right time, and watching the numbers go up"
+                    status="upcoming"
+                    tags={["ROBLOX", "GAME", "2026"]}
+                />
+                <ProjectCard
+                    href="/"
+                    title="bare"
+                    description="extremely minimal framework built as introductury material for infrastructure development"
+                    status="upcoming"
+                    tags={["ROBLOX", "FRAMEWORK", "2026"]}
+                />
+                <ProjectCard
+                    href="/"
+                    title="dof"
+                    description="data-oriented framework built for minimal memory usage"
+                    status="experimental"
+                    tags={["ROBLOX", "FRAMEWORK", "2027"]}
+                />
+                <ProjectCard
+                    href="/"
+                    title="schemaECS"
+                    description="when explicitly-defined schemas meet an entity component system. annihilates unpredictable behavior. supports a plethora deterministic features"
+                    status="upcoming"
+                    tags={["ROBLOX", "FRAMEWORK", "2027"]}
+                />
+                <ProjectCard
+                    href="/"
+                    title="Banana Tower Defense"
+                    description="high quality monkey-themed tower defense game. awesome visuals, awesome-r visuals, awesome-st concept"
+                    status="upcoming"
+                    tags={["ROBLOX", "GAME", "2027"]}
+                />
+                <ProjectCard
+                    href="/"
+                    title="Utopia"
+                    description="hardcore open-world survival game with a heavy emphasis on combat. inspired by Rust"
+                    status="upcoming"
+                    tags={["ROBLOX", "GAME", "2028"]}
+                />
+            </div>
+        </main>
     </Fragment>
 </Layout>

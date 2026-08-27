@@ -4,11 +4,12 @@ import SubNav from "../../components/sub-nav.astro"
 import "./style.css"
 
 const pathName = Astro.url.pathname.replace(/\/+$/, "") || "/";
-const dir = "/projects/flightframework"
+const dir = "/flightframework"
 ---
 
 <SubNav definition={[
     { label:"flight", href: dir, current: pathName===dir },
+    { label:"installation", href: `${dir}/installation`, current: pathName.match("/installation")!=null },
     { label:"libraries", href: `${dir}/libraries`, current: pathName.match("/libraries")!=null },
     { label:"guide", href: `${dir}/guide`, current: pathName.match("/guide")!=null }
 ]} />

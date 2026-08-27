@@ -2,6 +2,14 @@
 import Pill from "./pill.astro"
 
 const pathName = Astro.url.pathname
+
+const projects = [
+    "projects",
+    "flightframework"
+]
+
+const currentFolder = pathName.split("/").filter(Boolean)[0]
+const isProject = projects.includes(currentFolder)
 ---
 
 <header class="header">
@@ -11,7 +19,6 @@ const pathName = Astro.url.pathname
         aria-label="Go to homepage"
     >
         <div class="brandmark-logo" />
- 
 
         <span class="brandmark-text">
             finch
@@ -19,10 +26,9 @@ const pathName = Astro.url.pathname
     </a>
 
     <nav class="header__nav">
-        <Pill current={pathName === "/"} label="home", href="/" />
-        <Pill current={pathName.startsWith("/projects")} label="projects", href="/projects/") />
-        <Pill current={pathName.startsWith("/tutorials")} label="tutorials", href="/tutorials/" />
-        <!-- <Pill current={pathName.startsWith("/plugins")} label="plugins", href="/plugins/" /> -->
+        <Pill current={pathName === "/"} label="home" href="/" />
+        <Pill current={isProject} label="projects" href="/projects/" />
+        <Pill current={pathName.startsWith("/tutorials")} label="tutorials" href="/tutorials/" />
     </nav>
 
     <div class="header__buttons">
@@ -62,7 +68,10 @@ const pathName = Astro.url.pathname
             </svg>
         </button>
 
-        <a class="header__button" href="https://github.com/funnyfinch">
+        <a
+            class="header__button"
+            href="https://github.com/funnyfinch"
+        >
             <div class="github-button"></div>
         </a>
     </div>

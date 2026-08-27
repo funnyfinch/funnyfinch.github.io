@@ -1,9 +1,41 @@
 ---
 import Layout from "../../components/layout.astro";
+import TutorialCard from "../../components/tutorial-card.astro"
+import "./tutorials.css"
 ---
 
 <Layout>
     <Fragment slot="body">
-        
+        <main class="content">
+            <div class="tutorial-hero">
+                <h2 style="justify-self: center; margin-top: 0; font-size: 3rem;">all my tutorials</h2>
+            </div>
+            <div class="tutorial-cards">
+                <TutorialCard
+                    href="/tutorials/beginner-scripting/"
+                    title="beginner-scripting"
+                    description="introductory "
+                    tags={["ROBLOX", "FRAMEWORK", "2026"]}
+                >
+                    <h3 class="tutorial-covers-label">covers:</h2>
+                    <div class="tutorial-covers-wrapper">
+                        <ul class="tutorial-covers">
+                            <li>basics of Roblox Studio</li>
+                            <li>variables, functions</li>
+                            <li><code>LocalScript</code> vs. server <code>Script</code></li>
+                            <li>ModuleScripts</li>
+                            <li>client-server architecture</li>
+                            <li>RemoteEvents and RemoteFunctions</li>
+                            <li>type checking</li>
+                        </ul>
+
+                        <button class="tutorial-covers-toggle" type="button">
+                            <span class="show-more">show more</span>
+                            <span class="show-less">show less</span>
+                        </button>
+                    </div>
+                </TutorialCard>
+            </div>
+        </main>
     </Fragment>
 </Layout>

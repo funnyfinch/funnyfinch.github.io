@@ -1,0 +1,28 @@
+---
+interface Props {
+    href: string
+    title: string
+    description: string
+    tags: string[]
+
+}
+
+const { href, title, description, tags } = Astro.props
+
+---
+
+<div class="tutorial-card">
+    <p class="tutorial-card-title">{title}</p>
+    <p class="tutorial-card-description">{description}</p>
+    <slot />
+    <div class="tutorial-footer">
+        <div class="tutorial-card-tags">
+            {tags.map((tag) => (
+                <p class={`tutorial-card-tag tutorial-card-tag-${tag.toLowerCase()}`}>{tag}</p>
+            ))}
+        </div>
+
+        <a class="tutorial-follow-button" href={href}>go to</a>
+    </div>
+    
+</a>

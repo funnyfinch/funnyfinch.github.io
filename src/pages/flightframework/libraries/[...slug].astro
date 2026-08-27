@@ -2,6 +2,7 @@
 import DocsLayout from "../../../components/docs.astro"
 import { parseMarkdown } from "../../../markdown"
 import docs from "./docs.json"
+import SubNav from "../nav.astro"
 
 interface Document {
     slug: string
@@ -74,4 +75,6 @@ const slug = Astro.params.slug!
     documents={documents}
     currentSlug={slug}
     basePath="/flightframework/libraries"
-/>
+>
+    <SubNav />
+</DocsLayout>

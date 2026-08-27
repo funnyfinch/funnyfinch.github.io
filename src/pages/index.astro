@@ -13,7 +13,7 @@ import "./home.css"
         <div class="hero-shell">
             <div class="hero">
                 <p class="hero-hi">hi there, i'm</p>
-                <img class="hero-logo" src="/public/assets/logo-name.svg">
+                <div class="hero-logo" />
 
                 <p
                     class="typewriter hero-typewriter"
@@ -69,7 +69,7 @@ import "./home.css"
                 <h2>some projects i've built</h2>
 
                 <ProjectCard
-                        href="/projects/flightframework/"
+                        href="/flightframework/"
                         featured={true};
                         title="flightframework"
                         description="a lightweight, clean, high-performance framework built for streamlining Roblox development"
@@ -92,25 +92,14 @@ import "./home.css"
                         status="upcoming"
                         tags={["ROBLOX", "FRAMEWORK"]}
                     />
-                    <ProjectCard
-                        href="/"
-                        title="schemaECS"
-                        description=""
-                        status="upcoming"
-                        tags={["ROBLOX", "FRAMEWORK"]}
-                    />
-                    <ProjectCard
-                        href="/"
-                        title="Banana Tower Defense"
-                        description=""
-                        status="upcoming"
-                        tags={["ROBLOX", "GAME"]}
-                    />
                 </div>
+
+                <a class="project-see-more" href="./projects/">see more projects</a>
             </div>
 
             <div id="tutorials">
-
+                <h2 style="justify-self: end;">my recommended tutorials</h2>
+                <a class="project-see-more" href="./tutorials/">see more tutorials</a>
             </div>
         </main>
     </Fragment>
