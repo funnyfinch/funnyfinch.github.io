@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/funnyfinch/funnyfinch.github.io#readme",
   "dependencies": {
+    "astro": "^5.0.0",
     "marked": "^18.0.10"
   }
 }
