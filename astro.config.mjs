@@ -6,5 +6,8 @@ export default defineConfig({
     devToolbar: {
         enabled: false
     },
-    site: "https://funnyfinch.github.io"
+    site: "https://funnyfinch.github.io",
+    redirects: {
+        "/libraries": "/libraries/getting-started"
+    }
 });
