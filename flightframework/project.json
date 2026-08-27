@@ -1,0 +1,25 @@
+{
+    "name": "flightframework",
+    "root": "flightframework/index.html",
+    "description": "A compact framework for Roblox development.",
+    "section": "projects",
+
+    "navigation": [
+        {
+            "label": "home",
+            "href": "flightframework/index.html"
+        },
+        {
+            "label": "installation",
+            "href": "flightframework/installation.html"
+        },
+        {
+            "label": "libraries",
+            "href": "flightframework/libraries/overview.html"
+        },
+        {
+            "label": "tutorials",
+            "href": "flightframework/tutorials/index.html"
+        }
+    ]
+}

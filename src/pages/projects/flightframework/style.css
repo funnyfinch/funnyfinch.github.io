@@ -1,0 +1,11 @@
+.flightframework-logo {
+    mask: url(/public/assets/flightframework.svg) center / contain no-repeat;
+    background-color: var(--accent);
+    height: 13rem;
+    width: 25rem;
+    transform: translateX(150px);
+}
+
+.flight-hero {
+    position: relative;
+}

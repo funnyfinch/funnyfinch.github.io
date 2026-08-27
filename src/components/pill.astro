@@ -1,0 +1,18 @@
+---
+interface Props {
+    current?: boolean
+    label: string
+    href: string
+}
+
+const { current, label, href } = Astro.props
+---
+
+<a
+    aria-current={current ? "page" : undefined}
+    class="pill"
+    href={href}
+    data-astro-prefetch="hover"
+>
+    {label}
+</a>

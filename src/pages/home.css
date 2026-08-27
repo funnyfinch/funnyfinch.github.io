@@ -1,0 +1,181 @@
+:root {
+    --shell-bg: color-mix(in srgb, var(--bg) 90%, rgb(79, 205, 255));
+}
+
+.hero-shell {
+    height: calc(100vh - 72px);
+    display: flex;
+    justify-content: center;
+    background-color: var(--shell-bg);
+}
+
+.hero {
+    width: 80%;
+    height: 80vh;
+    margin-top: 2rem;
+
+    border-radius: 1.2rem;
+    padding: 2rem 3rem;
+    display: block;
+
+    top: 0;
+    z-index: 0;
+    background: radial-gradient(
+        circle at 80% 70%,
+        #93d9ff,
+        var(--accent)
+    );
+    
+    box-shadow: 0px 0px 15px var(--shadow-dark);
+}
+
+.hero-hi {
+    margin-top: 3rem;
+    transform: translateX(1%);
+    color: white;;
+    font-weight: 500;
+    font-size: 1.2rem;
+}
+
+.hero-logo {
+    margin-top: 1rem;
+    transform: translateX(-9%);
+    width: 30%;
+    height: 25%;
+}
+
+.scroll-buttons {
+    margin-top: 4rem;
+    display: flex;
+    gap: 0.8rem;
+}
+
+.scroll-button {
+    padding: 0.3rem 1.5rem;
+    border-radius: var(--corner-radius);
+    border: none;
+    color: var(--opposite-bg);
+    align-items: center;
+    /* height: 2rem; */
+    justify-content: center;
+    font-weight: 600;
+    font-size: 1rem;
+    display: flex;
+    gap: 5px;
+    width: fit-content;
+    background-color: var(--shell-bg);
+}
+
+.scroll-button svg {
+    color: var(--opposite-bg);
+    animation: arrow-bounce 1.5s ease-in-out infinite;
+}
+
+@keyframes arrow-bounce {
+    0%, 100% {
+        transform: translateY(-2px);
+    }
+
+    50% {
+        transform: translateY(2px);
+    }
+}
+
+.hero-typewriter {
+    margin-top: 1.5rem;
+}
+
+
+h2 {
+    font-size: 3rem;
+    font-weight: 400;
+    margin: 0;
+}
+
+#project {
+    scroll-margin-top: 72px;
+}
+
+.project-list {
+    display: grid;
+    margin-top: 1rem;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+}
+
+.project-card {
+    position: relative;
+    display: block;
+    border: 1px solid var(--line);
+    border-radius: var(--corner-radius);
+    padding: 1.7rem 1.2rem;
+    background-color: var(--bg-secondary);
+}
+
+.project-card .status {
+    color: var(--status-color);
+    letter-spacing: 0.12em;
+    width: fit-content;
+    font-weight: 600;
+
+    border-radius: var(--corner-radius);
+    padding: 0 1rem;
+    background-color: color-mix(in srgb, var(--status-color) 10%, transparent);
+}
+
+.project-card-title {
+    margin-top: 1rem;
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.project-card-description {
+    font-weight: 400;
+    color: var(--text-secondary)
+}
+
+.project-card-tags {
+    margin-top: 1rem;
+    display: flex;
+    gap: 0.5rem;
+}
+
+.project-card-tag {
+    color: var(--text-alt);
+    border: 1px solid var(--line);
+    width: fit-content;
+    padding: 0 0.7rem;
+    border-radius: var(--corner-radius);
+    font-weight: 600;
+}
+
+.status-active {
+    --status-color: #2b7f2a;
+}
+
+.status-upcoming {
+    --status-color: #307787;
+}
+
+
+.project-card:hover,
+.project-card:focus-visible {
+    animation: card-hover 0.2s ease;
+    animation-fill-mode: both;
+}
+
+@keyframes card-hover {
+    from {
+        transform: translateY(0);
+        box-shadow: none;
+    }
+
+    to {
+        transform: translateY(-6px);
+        box-shadow: 0 5px 20px var(--line);
+    }
+}
+
+.project-card--featured {
+    
+}

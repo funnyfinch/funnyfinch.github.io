@@ -1,0 +1,9 @@
+{
+    "title": "libraries",
+    "pages": [
+        "overview.md",
+        "cleaner.md",
+        "signal.md",
+        "network.md"
+    ]
+}

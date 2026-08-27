@@ -1,0 +1,25 @@
+---
+interface Props {
+    href: string
+    featured?: boolean;
+    status: "active" | "maintained" | "experimental" | "archived" | "upcoming"
+    title: string
+    description: string
+    tags: string[]
+
+}
+
+const { href, featured, status, title, description, tags } = Astro.props
+
+---
+
+<a class={`project-card ${featured ? "project" : ""}`} href={href}>
+    <p class={`status status-${status}`}>{status}</p>
+    <p class="project-card-title">{title}</p>
+    <p class="project-card-description">{description}</p>
+    <div class="project-card-tags">
+        {tags.map((tag) => (
+            <p class={`project-card-tag project-card-tag-${tag.toLowerCase()}`}>{tag}</p>
+        ))}
+    </div>
+</a>

@@ -1,0 +1,18 @@
+---
+import Pill from "./pill.astro"
+
+interface Props {
+    definition: { current: boolean, label: string, href: string }[]
+}
+
+const { definition } = Astro.props
+const pathName = Astro.url.pathname
+---
+
+<nav class="sub-nav">
+    <div class="sub-nav-container">
+        {definition.map(({ current, label, href }) => (
+            <Pill current={current} label={label} href={href} />
+        ))}
+    </div>
+</nav>

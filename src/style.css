@@ -1,0 +1,367 @@
+:root {
+    color-scheme: dark;
+    --bg: #18242f;
+    --bg-secondary: #1b2733;
+    --opposite-bg: #f8f8f8;
+    --header-bg: #dde6eb;
+    --pill-bg: #4ec6e4;
+    --accent: #30baff;
+    --accent-deep: #28a6e5;
+    --accent-dark: #2e6782;
+    --text-main: #fcfdfe;
+    --text-secondary: #d8dee3;
+    --text-alt: #959fa4;
+    --text-light: #ffffff;
+    --text-light-secondary: #c4ccd4;
+    --text-dark: #212837;
+    --text-mid: #475367;
+    --nav-blur: 10px;
+
+    --shadow: rgba(0, 0, 0, 0.05);
+    --nav-shadow: rgba(0, 0, 0, 0.15);
+    --shadow-dark: rgba(0, 0, 0, 0.2);
+
+    --corner-radius: 0.7rem;
+
+    --dark: #18242f;
+
+    --line: rgba(200, 220, 231, 0.12);
+    --line-dark: rgba(200, 220, 231, 0.3);
+
+    --header-action-size: 55%;
+
+    font-family:
+        "Baloo Da 2",
+        sans-serif;
+
+    --scrollbar-track: transparent;
+    --scrollbar-thumb: rgba(196, 235, 247, 0.16);
+}
+
+[data-theme="light"] {
+    color-scheme: light;
+    --bg: #f3fdfd;
+    --bg-secondary: #f8fefe;
+    --opposite-bg: #18242f;
+    --header-bg: #dee5e9;
+    --pill-bg: #4ec6e4;
+    --accent: #30baff;
+    --accent-deep: #28a6e5;
+    --accent-dark: #2e6782;
+    --text-main: #202634;
+    --text-secondary: #424b62;
+    --text-alt: #8c91a2;
+    --text-light: #ffffff;
+    --text-light-secondary: #dee2e6;
+    --text-dark: #212837;
+
+    --shadow: rgba(0, 0, 0, 0.05);
+    --nav-shadow: rgba(0, 0, 0, 0.05);
+
+    --corner-radius: 0.7rem;
+
+    --dark: #18242f;
+
+    --line: rgba(20, 58, 78, 0.2);
+    --line-dark: rgba(20, 58, 78, 0.3);
+
+    font-family:
+        "Baloo Da 2",
+        sans-serif;
+
+    --scrollbar-track: transparent;
+    --scrollbar-thumb: rgba(20, 58, 78, 0.16);
+}
+
+html {
+    scroll-behavior: smooth;
+    scrollbar-gutter: stable;
+    scrollbar-width: thin;
+    scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
+}
+
+* {
+    text-decoration: none;
+    box-sizing: border-box;
+    transition:
+        background-color 250ms ease,
+        box-shadow 250ms ease,
+        color 250ms ease
+}
+
+a, p {
+    margin: 0;
+    color: var(--text-main)
+}
+
+
+
+body {
+    margin: 0;
+    background-color: var(--bg)
+}
+
+/* header */
+
+    @property --header-text {
+        syntax: "<color>";
+        inherits: true;
+        initial-value: white;
+    }
+
+    @keyframes header-scroll {
+        from {
+            /* backdrop-filter: blur(0px);
+            --header-text: white; */
+            /* background: transparent; */
+        }
+
+        to {
+            /* backdrop-filter: blur(20px);
+            --header-text: black; */
+            /* background: rgb(from var(--opposite-bg) r g b / calc(alpha * 0.9)); */
+        }
+    }
+
+    .header {
+        --header-text: white;
+        position: sticky;
+        top: 0;
+
+        width: 100%;
+        box-sizing: border-box;
+        background: var(--header-bg);
+        z-index: 10;
+
+        backdrop-filter: blur(var(--nav-blur));
+
+        display: grid;
+        grid-template-columns: 1fr auto 1fr;
+
+        align-items: center;
+        background: transparent;
+        box-shadow: 0 5px 3px var(--nav-shadow);
+
+        height: 72px;
+        padding: 0rem 1.5rem;
+
+        animation: header-scroll linear;
+        animation-timeline: scroll();
+        animation-range: 50vh 100vh;
+        animation-fill-mode: both;
+    }
+
+    .brandmark {
+        justify-self: start;
+
+        display: inline-flex;
+        align-items: center;
+        gap: 0.75rem;
+
+        text-decoration: none;
+        line-height: 1;
+    }
+
+    .brandmark-logo {
+        width: 30px;
+        height: 30px;
+        flex: 0 0 auto;
+
+        mask: url("/public/assets/logo.svg") center / contain no-repeat;
+        -webkit-mask: url("/public/assets/logo.svg") center / contain no-repeat;
+
+        background-color: var(--accent);
+    }
+
+    .brandmark-text {
+        font-family:
+            "Baloo Da 2",
+            sans-serif;
+
+        font-weight: 700;
+        font-size: 1.45rem;
+        
+        color: var(--accent)
+    }
+
+/* */
+
+    /* pills */
+
+    .header__nav {
+        display: flex;
+        justify-self: center;
+        align-items: center;
+        height: 50%;
+    }
+
+    .pill {
+        display: inline-flex;
+        align-items: center;
+
+        border-radius: var(--corner-radius);
+
+        text-decoration: none;
+
+        color: var(--text-main);
+
+        height: 100%;
+        font-size: 1rem;
+        font-weight: 700;
+
+        padding: 0rem 0.8rem;
+
+        transition:
+            color 140ms ease,
+            background 140ms ease;
+    }
+
+    .pill:hover,
+    .pill:focus-visible {
+        color: var(--accent);
+
+        background: var(--hover-surface);
+    }
+
+    .pill[aria-current="page"] {
+        color: var(--bg);
+
+        background: var(--opposite-bg);
+
+        box-shadow:
+            inset 0 0 0 1px var(--line);
+    }
+
+
+/* site header */
+
+    /* actions */
+    
+    .header__buttons {
+        display: inline-flex;
+        justify-self: end;
+        align-items: end;
+        gap: 1rem;
+        text-decoration: none;
+        /* line-height: 1; */
+    }
+
+    .header__button {
+        width: 30px;
+        height: 30px;
+        padding: 0;
+        flex: 0 0 auto;
+        background: white;
+        border-radius: 100%;
+        border: none;
+
+        border: 2px solid var(--line);
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        transition: transform 100ms ease;
+    }
+
+    .header__button:active {
+        transform: scale(75%) rotate(15deg);
+    }
+
+    .github-button {
+        width: var(--header-action-size);
+        height: var(--header-action-size);
+
+        background-color: var(--opposite-bg);
+
+        mask: url("public/assets/github.svg") center / contain no-repeat;
+        -webkit-mask: url("/public/assets/github.svg") center / contain no-repeat;
+    }
+
+    .theme-toggle {
+        border-radius: 100%;
+        cursor: pointer;
+        color: white;
+    }
+
+    .theme-toggle__button {
+        width: var(--header-action-size);
+        height: var(--header-action-size);
+    }
+
+    .theme-toggle__sun,
+    .theme-toggle__moon {
+        display: none;
+    }
+
+    [data-theme="dark"] .header__button {
+        background-color: transparent;
+    }
+
+    [data-theme="light"] .theme-toggle__sun {
+        display: block;
+        color: #3c3e43;
+    }
+
+    [data-theme="dark"] .theme-toggle__moon {
+        display: block;
+    }
+
+
+.typewriter {
+    color: var(--accent-dark);
+    font-weight: 500;
+    font-size: 2rem;
+    height: 2rem;
+}
+
+.typewriter::after {
+    content: "";
+    display: inline-block;
+    width: 0.12em;
+    height: 0.85em;
+    margin-left: 0.1em;
+    vertical-align: -0.08em;
+    background: var(--accent-dark);
+    animation: typewriter-cursor 1s steps(1) infinite;
+}
+
+@keyframes typewriter-cursor {
+    0%,
+    50% {
+        opacity: 1;
+    }
+
+    51%,
+    100% {
+        opacity: 0;
+    }
+}
+
+.content {
+    padding: 3rem 9rem;
+    padding-bottom: 3rem;
+}
+
+.sub-nav {
+    width: 100%;
+    height: 50px;
+    top: 72px;
+    position: sticky;
+    background: none;
+    box-shadow: 0 5px 3px var(--shadow);
+    backdrop-filter: blur(var(--nav-blur));
+    z-index: 9;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 1.5rem;
+}
+
+.sub-nav-container {
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

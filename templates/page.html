@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1"
+    >
+
+    <title>{{TITLE}}</title>
+
+    <meta
+        name="description"
+        content="{{DESCRIPTION}}"
+    >
+
+    <link
+        rel="icon"
+        type="image/svg+xml"
+        href="{{ROOT}}assets/logo.svg"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Baloo+Da+2:wght@400;500;600;700&family=Instrument+Sans:wght@400;500;600;700&display=swap"
+        rel="stylesheet"
+    >
+
+    <script>
+        (() => {
+            const saved = localStorage.getItem("theme");
+
+            const theme =
+                saved === "light" || saved === "dark"
+                    ? saved
+                    : (
+                        window.matchMedia(
+                            "(prefers-color-scheme: dark)"
+                        ).matches
+                            ? "dark"
+                            : "light"
+                    );
+
+            document.documentElement.dataset.theme = theme;
+        })();
+    </script>
+
+    <link
+        rel="stylesheet"
+        href="{{ROOT}}style.css"
+    >
+
+</head>
+
+<body class="site-body">
+
+    {{MAIN_NAV}}
+
+    {{SUB_NAV}}
+
+    {{CONTENT}}
+
+    <script src="{{ROOT}}script.js"></script>
+
+</body>
+
+</html>

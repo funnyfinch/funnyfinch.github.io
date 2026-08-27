@@ -1,0 +1,34 @@
+---
+import Header from "../components/header.astro"
+import "../style.css"
+---
+
+<html lang="en">
+    <head>
+        <script is:inline>
+            const theme = localStorage.getItem("theme")
+
+            if (theme) {
+                document.documentElement.dataset.theme = theme
+            }
+        </script>
+
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width" />
+
+        <title>finch</title>
+
+        <link
+            href="https://fonts.googleapis.com/css2?family=Baloo+Da+2:wght@400;500;600;700&family=Instrument+Sans:wght@400;500;600;700&display=swap"
+            rel="stylesheet"
+        >
+
+        <slot name="head" />
+    </head>
+
+    <body>
+        <Header />
+        <slot name="body" />
+        <script src="../main.ts" />
+    </body>
+</html>

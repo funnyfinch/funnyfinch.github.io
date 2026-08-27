@@ -1,0 +1,110 @@
+---
+import Layout from "../components/layout.astro"
+import ProjectCard from "../components/project-card.astro"
+import "./home.css"
+---
+
+<Layout>
+    <Fragment slot="head">
+        
+    </Fragment>
+
+    <Fragment slot="body">
+        <div class="hero-shell">
+            <div class="hero">
+                <p class="hero-hi">hi there, i'm</p>
+                <img class="hero-logo" src="/public/assets/logo-name.svg">
+
+                <p
+                    class="typewriter hero-typewriter"
+                    data-typewriter='[
+                        "i build games people remember",
+                        "i build the foundation beneath games",
+                        "i build games built to scale",
+                        "i build the complexity behind simplicity"
+                    ]'
+                />
+                <p
+                    class="typewriter hero-typewriter"
+                    data-typewriter='[
+                        "i love reactive programming",
+                        "i love simplicity",
+                        "i love clean API",
+                        "i love type sorcery"
+                    ]'
+                />
+
+                <div class="scroll-buttons">
+                    <a class="scroll-button" href="#project">
+                        projects
+                        <svg width="16" height="16" fill="currentColor" class="bi bi-arrow-down" viewBox="0 0 16 16">
+                            <path
+                            fill-rule="evenodd"
+                            d="M8 2a.5.5 0 0 1 .5.5v8.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L7.5 11.293V2.5A.5.5 0 0 1 8 2"
+                            stroke="currentColor"
+                            stroke-width="1"
+                            stroke-linejoin="round"
+                            />
+                        </svg>
+                    </a>
+
+                    <a class="scroll-button" href="#tutorials">
+                        tutorials
+                        <svg width="16" height="16" fill="currentColor" class="bi bi-arrow-down" viewBox="0 0 16 16">
+                            <path
+                            fill-rule="evenodd"
+                            d="M8 2a.5.5 0 0 1 .5.5v8.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L7.5 11.293V2.5A.5.5 0 0 1 8 2"
+                            stroke="currentColor"
+                            stroke-width="1"
+                            stroke-linejoin="round"
+                            />
+                        </svg>
+                     </a>
+                </div>
+            </div>
+        </div>
+
+        <main class="content">
+            <div id="project">
+                <h2>some projects i've built</h2>
+
+                <ProjectCard
+                        href="/projects/flightframework"
+                        featured={true};
+                        title="flightframework"
+                        description="a lightweight, clean, high-performance framework built for streamlining Roblox development"
+                        status="active"
+                        tags={["ROBLOX", "FRAMEWORK"]}
+                    />
+
+                <div class="project-list">
+                    <ProjectCard
+                        href="/"
+                        title="Merge a Farm"
+                        description=""
+                        status="upcoming"
+                        tags={["ROBLOX", "GAME"]}
+                    />
+                    <ProjectCard
+                        href="/"
+                        title="bare"
+                        description=""
+                        status="upcoming"
+                        tags={["ROBLOX", "FRAMEWORK"]}
+                    />
+                    <ProjectCard
+                        href="/"
+                        title="schemaECS"
+                        description=""
+                        status="upcoming"
+                        tags={["ROBLOX", "FRAMEWORK"]}
+                    />
+                </div>
+            </div>
+
+            <div id="tutorials">
+
+            </div>
+        </main>
+    </Fragment>
+</Layout>

@@ -1,0 +1,69 @@
+---
+import Pill from "./pill.astro"
+
+const pathName = Astro.url.pathname
+---
+
+<header class="header">
+    <a
+        class="brandmark"
+        href="/"
+        aria-label="Go to homepage"
+    >
+        <div class="brandmark-logo" />
+ 
+
+        <span class="brandmark-text">
+            finch
+        </span>
+    </a>
+
+    <nav class="header__nav">
+        <Pill current={pathName === "/"} label="home", href="/" />
+        <Pill current={pathName.startsWith("/projects")} label="projects", href="/projects/") />
+        <Pill current={pathName.startsWith("/tutorials")} label="tutorials", href="/tutorials/" />
+        <!-- <Pill current={pathName.startsWith("/plugins")} label="plugins", href="/plugins/" /> -->
+    </nav>
+
+    <div class="header__buttons">
+        <button class="header__button theme-toggle">
+            <svg
+                class="theme-toggle__sun theme-toggle__button"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+            >
+                <circle cx="12" cy="12" r="4"></circle>
+                <path d="M12 2v2"></path>
+                <path d="M12 20v2"></path>
+                <path d="m4.93 4.93 1.41 1.41"></path>
+                <path d="m17.66 17.66 1.41 1.41"></path>
+                <path d="M2 12h2"></path>
+                <path d="M20 12h2"></path>
+                <path d="m6.34 17.66-1.41 1.41"></path>
+                <path d="m19.07 4.93-1.41 1.41"></path>
+            </svg>
+
+            <svg
+                class="theme-toggle__moon theme-toggle__button"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+            >
+                <path d="M21 12.8A8.5 8.5 0 1 1 11.2 3a6.5 6.5 0 0 0 9.8 9.8Z"></path>
+            </svg>
+        </button>
+
+        <a class="header__button" href="https://github.com/funnyfinch">
+            <div class="github-button"></div>
+        </a>
+    </div>
+</header>
