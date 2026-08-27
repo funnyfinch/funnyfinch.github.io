@@ -1,9 +1,9 @@
 ---
-import SubNav from "../../../components/sub-nav.astro"
+import SubNav from "../../components/sub-nav.astro"
 
 import "./style.css"
 
-const pathName = Astro.url.pathname
+const pathName = Astro.url.pathname.replace(/\/+$/, "") || "/";
 const dir = "/projects/flightframework"
 ---
 

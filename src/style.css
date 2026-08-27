@@ -7,6 +7,7 @@
     --pill-bg: #4ec6e4;
     --accent: #30baff;
     --accent-deep: #28a6e5;
+    --accent-soft: rgba(46, 181, 246, 0.14);
     --accent-dark: #2e6782;
     --text-main: #fcfdfe;
     --text-secondary: #d8dee3;
@@ -17,9 +18,18 @@
     --text-mid: #475367;
     --nav-blur: 10px;
 
+    --hover-surface: rgba(148, 226, 255, 0.03);
+
     --shadow: rgba(0, 0, 0, 0.05);
     --nav-shadow: rgba(0, 0, 0, 0.15);
     --shadow-dark: rgba(0, 0, 0, 0.2);
+
+    --code-bg: #05131b;
+    --code-text: #e7f5fa;
+    --inline-code-bg: rgba(129, 129, 129, 0.085);
+    --inline-code-text: #e7f2f9;
+
+    --muted: #798a92;
 
     --corner-radius: 0.7rem;
 
@@ -47,6 +57,7 @@
     --pill-bg: #4ec6e4;
     --accent: #30baff;
     --accent-deep: #28a6e5;
+    --accent-soft: rgba(46, 181, 246, 0.14);
     --accent-dark: #2e6782;
     --text-main: #202634;
     --text-secondary: #424b62;
@@ -57,6 +68,12 @@
 
     --shadow: rgba(0, 0, 0, 0.05);
     --nav-shadow: rgba(0, 0, 0, 0.05);
+
+    --hover-surface: rgba(236, 241, 242, 0.72);
+
+    --code-bg: #081e2b;
+    --inline-code-bg: rgba(129, 129, 129, 0.085);
+    --inline-code-text: #112530;
 
     --corner-radius: 0.7rem;
 
@@ -365,3 +382,184 @@ body {
     align-items: center;
     justify-content: center;
 }
+
+
+/* markdown */
+
+    .markdown {
+
+    }
+
+    .markdown code {
+        font-family:
+            Consolas,
+            "Courier New",
+            monospace;
+
+        font-size:
+            0.95em;
+    }
+
+    .markdown pre {
+        overflow-x: auto;
+
+        margin: 1.5rem 0;
+
+        border-radius: 18px;
+
+        padding: 1rem;
+
+        background: var(--code-bg);
+
+        color: var(--code-text);
+    }
+
+    .markdown pre code {
+        background: transparent;
+
+        padding: 0;
+
+        color: var(--code-text);
+    }
+
+    .markdown :not(pre) > code {
+        padding: 0.15em 0.4em;
+        border: 1px solid var(--line);
+        border-radius: 0.3em;
+
+        background:  var(--inline-code-bg);
+        color: var(--inline-code-text);
+
+        font-size: 0.9em;
+    }
+
+    .markdown code.language-output {
+        color: var(--muted);
+    }
+
+
+/* docs */
+
+    .docs-shell {
+        display: grid;
+
+        grid-template-columns: 260px minmax(0, 1fr);
+        gap: 2rem;
+        width: min(1200px, calc(100% - 2rem));
+
+        height: calc(100vh - 120px);
+
+        margin: 2rem auto;
+
+        min-height: 0;
+    }
+
+    .docs-shell h1 {
+        margin: 0;
+    }
+
+    .docs-sidebar {
+        min-width: 0;
+        min-height: 0;
+
+        overflow-y: auto;
+
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+    }
+
+    .docs-sidebar::-webkit-scrollbar {
+        display: none;
+    }
+
+    .docs-navigation div > a {
+        display: block;
+        padding: 0.45rem 0.75rem;
+        color: var(--muted);
+        font-weight: 600;  
+    }
+
+    .docs-navigation a {
+        padding-left: 1rem;
+        border-radius: var(--corner-radius);
+        transition:
+            color 140ms ease
+            background 140ms ease
+    }
+
+    .docs-navigation a:hover {
+        background: var(--hover-surface)
+    }
+
+    .docs-navigation div > a.active {
+        color: var(--accent);
+        background: var(--accent-soft)
+    }
+
+    .docs-sidebar__list,
+    .toc-list {
+        list-style: none;
+
+        margin-top: 0;
+        padding: 0;
+    }
+
+    .docs-entry-toc {
+        margin:
+            0.25rem 0
+            0.75rem
+            0.75rem;
+
+        padding-left: 0.75rem;
+        border-left: 2px solid var(--accent);
+    }
+
+    .docs-entry-toc a {
+        display: block;
+        padding-left: calc((var(--depth) - 1.5) * 1.5rem);
+    }
+
+    .docs-content h1,
+    .docs-content h2,
+    .docs-content h3,
+    .docs-content h4,
+    .docs-content h5,
+    .docs-content h6 {
+        scroll-margin-top: 72px;
+    }
+
+
+    /* callouts */
+
+    .callout {
+        margin: 1.5rem 0;
+        padding: 1rem 1.25rem;
+
+        border: 1px solid var(--line-strong);
+        border-left: 4px solid var(--accent);
+        border-radius: 0.5rem;
+
+        background: var(--hover-surface);
+    }
+
+    .callout-title {
+        margin-bottom: 0rem;
+
+        font-size: 1.2rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+
+        color: var(--accent);
+    }
+
+    .callout-content {
+        color: var(--ink);
+    }
+
+    .callout-content > :first-child {
+        margin-top: 0;
+    }
+
+    .callout-content > :last-child {
+        margin-bottom: 0;
+    }

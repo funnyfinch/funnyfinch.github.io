@@ -1,0 +1,128 @@
+---
+import Layout from "./layout.astro"
+import Markdown from "./markdown.astro"
+import "../style.css"
+
+interface TocEntry {
+    title: string
+    slug: string
+    depth: number
+
+}
+
+interface Document {
+    slug: string
+    title: string
+    html: string
+    toc: TocEntry[]
+}
+
+interface Props {
+    documents: Document[]
+    currentSlug: string
+    document: Document
+    basePath: string
+    navTitle?: string
+}
+
+const {
+    documents,
+    currentSlug,
+    document,
+    basePath,
+    navTitle
+} = Astro.props
+---
+
+<Layout>
+
+    <Fragment slot="head">
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.min.css"
+        >
+    </Fragment>
+
+    <Fragment slot="body">
+
+        <slot />
+
+        <div class="docs-shell">
+
+            <aside class="docs-sidebar">
+
+                <h2 style={`margin-top: 0.4rem; display: ${navTitle ? "flex" : "none"}`}>{navTitle}</h1>
+
+                <nav class="docs-navigation">
+
+                    {documents.map((item) => (
+
+                        <div class="docs-entry">
+
+                            <a
+                                href={`${basePath}/${item.slug}`}
+                                class:list={{
+                                    active: item.slug === currentSlug
+                                }}
+                            >
+                                {item.title}
+                            </a>
+
+                            {item.toc.length > 0 && (
+
+                                <nav class="docs-entry-toc">
+
+                                    {item.toc.map((entry) => (
+
+                                        <a
+                                            href={`${basePath}/${item.slug}#${entry.slug}`}
+                                            style={`--depth: ${entry.depth}`}
+                                        >
+                                            {entry.title}
+                                        </a>
+
+                                    ))}
+
+                                </nav>
+
+                            )}
+
+                        </div>
+
+                    ))}
+
+                </nav>
+
+            </aside>
+
+            <main class="docs-content">
+
+                <h1>{document.title}</h1>
+
+                <Markdown html={document.html} />
+
+            </main>
+
+        </div>
+
+        <script>
+            import Prism from "prismjs"
+            import "prismjs/components/prism-lua"
+
+            Prism.languages.insertBefore("lua", "keyword", {
+                const: {
+                    pattern: /\bconst\b/,
+                    alias: "keyword"
+                }
+            })
+
+            document
+                .querySelectorAll("code.language-lua")
+                .forEach((element) => {
+                    Prism.highlightElement(element)
+                })
+        </script>
+
+    </Fragment>
+
+</Layout>
