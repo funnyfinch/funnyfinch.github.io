@@ -1,19 +1,21 @@
 ---
+import path from "node:path"
+import { fileURLToPath } from "node:url"
+
 import { getMarkdownFiles, loadMarkdown } from "../../../../markdown.ts"
 import DocsLayout from "../../../../components/docs.astro"
 
-export function getStaticPaths() {
-    return getMarkdownFiles("./").map((file: File) => {
-        return {
-            params: {
-                slug: file.slug,
-            },
+const librariesDir = path.dirname(fileURLToPath(import.meta.url))
 
-            props: {
-                document: loadMarkdown(file.path),
-            },
-        }
-    })
+export function getStaticPaths() {
+    return getMarkdownFiles(librariesDir).map((file) => ({
+        params: {
+            slug: file.slug,
+        },
+        props: {
+            document: loadMarkdown(file.path),
+        },
+    }))
 }
 
 const { document } = Astro.props

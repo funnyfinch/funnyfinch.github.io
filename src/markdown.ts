@@ -2,8 +2,6 @@ import fs from "node:fs"
 import path from "node:path"
 import { marked } from "marked"
 
-const DOCS_DIR = path.resolve("src/docs")
-
 function walk(directory: string) {
     const entries = fs.readdirSync(directory, {
         withFileTypes: true,
@@ -24,9 +22,9 @@ function walk(directory: string) {
     return files
 }
 
-export function getMarkdownFiles(filePath: string) {
-    return walk(DOCS_DIR).map((filePath) => {
-        const relative = path.relative(DOCS_DIR, filePath)
+export function getMarkdownFiles(directory: string) {
+    return walk(directory).map((filePath) => {
+        const relative = path.relative(directory, filePath)
 
         const slug = relative
             .replace(/\.md$/, "")
