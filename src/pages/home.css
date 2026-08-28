@@ -204,6 +204,349 @@
     }
 }
 
+/* =========================================================
+   PROJECTS
+   ========================================================= */
+
+#project {
+    scroll-margin-top: 72px;
+
+    display: block;
+}
+
+
+/* =========================================================
+   FEATURED PROJECT
+   ========================================================= */
+
+.project-card--featured {
+    width: 100%;
+}
+
+
+/* =========================================================
+   PROJECT GRID
+   ========================================================= */
+
+.project-list {
+    display: grid;
+
+    margin-top: 1rem;
+
+    grid-template-columns:
+        repeat(
+            2,
+            minmax(0, 1fr)
+        );
+
+    gap: 1rem;
+
+    min-width: 0;
+}
+
+
+/* =========================================================
+   PROJECT CARD
+   ========================================================= */
+
+.project-card {
+    position: relative;
+
+    display: block;
+
+    border: 1px solid var(--line);
+
+    border-radius: var(--corner-radius);
+
+    padding:
+        1.7rem
+        1.2rem;
+
+    background-color: var(--bg-secondary);
+
+    min-width: 0;
+
+    transition:
+        transform 200ms ease,
+        box-shadow 200ms ease,
+        background-color 250ms ease,
+        border-color 250ms ease;
+}
+
+.project-card .status {
+    color: var(--status-color);
+
+    letter-spacing: 0.12em;
+
+    width: fit-content;
+
+    max-width: 100%;
+
+    font-weight: 600;
+
+    border-radius: var(--corner-radius);
+
+    padding:
+        0
+        1rem;
+
+    background-color:
+        color-mix(
+            in srgb,
+            var(--status-color) 10%,
+            transparent
+        );
+}
+
+.project-card-title {
+    margin-top: 1rem;
+
+    font-size: 1.5rem;
+
+    font-weight: 600;
+
+    overflow-wrap: anywhere;
+}
+
+.project-card-description {
+    font-weight: 400;
+
+    color: var(--text-secondary);
+
+    overflow-wrap: anywhere;
+}
+
+.project-card-tags {
+    margin-top: 1rem;
+
+    display: flex;
+
+    gap: 0.5rem;
+
+    flex-wrap: wrap;
+}
+
+.project-card-tag {
+    color: var(--text-alt);
+
+    border: 1px solid var(--line);
+
+    width: fit-content;
+
+    padding:
+        0
+        0.7rem;
+
+    border-radius: var(--corner-radius);
+
+    font-weight: 600;
+
+    white-space: nowrap;
+}
+
+
+/* =========================================================
+   PROJECT STATUS
+   ========================================================= */
+
+.status-active {
+    --status-color: #2b7f2a;
+}
+
+.status-upcoming {
+    --status-color: #307787;
+}
+
+.status-experimental {
+    --status-color: #673087;
+}
+
+
+/* =========================================================
+   PROJECT CARD INTERACTION
+   ========================================================= */
+
+.project-card:hover,
+.project-card:focus-visible {
+    transform: translateY(-6px);
+
+    box-shadow:
+        0 5px 20px var(--line);
+}
+
+
+/* =========================================================
+   SEE MORE
+   ========================================================= */
+
+.project-see-more {
+    margin-top: 2rem;
+
+    display: block;
+
+    justify-self: center;
+
+    width: 100%;
+
+    height: 30px;
+
+    background-color: var(--opposite-bg);
+
+    color: var(--bg);
+
+    align-self: center;
+
+    text-align: center;
+
+    font-weight: 600;
+
+    border-radius: var(--corner-radius);
+
+    padding:
+        0
+        1rem;
+
+    line-height: 30px;
+}
+
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 800px) {
+    .project-list {
+        gap: 0.8rem;
+    }
+
+    .project-card {
+        padding:
+            1.4rem
+            1rem;
+    }
+
+    .project-card-title {
+        font-size: 1.35rem;
+    }
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 600px) {
+    /*
+     * Featured remains full-width.
+     *
+     * The two secondary projects collapse from:
+     *
+     *     [ A ] [ B ]
+     *
+     * to:
+     *
+     *     [ A ]
+     *     [ B ]
+     */
+    .project-list {
+        grid-template-columns: 1fr;
+
+        gap: 0.8rem;
+    }
+
+    .project-card {
+        padding:
+            1.25rem
+            1rem;
+    }
+
+    .project-card-title {
+        font-size: 1.25rem;
+    }
+
+    .project-card-description {
+        font-size: 0.95rem;
+    }
+
+    .project-card-tags {
+        gap: 0.4rem;
+    }
+
+    .project-card-tag {
+        font-size: 0.9rem;
+
+        padding:
+            0
+            0.6rem;
+    }
+
+    .project-see-more {
+        margin-top: 1.5rem;
+    }
+}
+
+
+/* =========================================================
+   VERY SMALL PHONES
+   ========================================================= */
+
+@media (max-width: 420px) {
+    .project-card {
+        padding:
+            1.15rem
+            0.9rem;
+    }
+
+    .project-card-title {
+        font-size: 1.15rem;
+    }
+
+    .project-card-description {
+        font-size: 0.9rem;
+    }
+
+    .project-card-tag {
+        font-size: 0.85rem;
+    }
+}
+
+
+/* =========================================================
+   TOUCH DEVICES
+   ========================================================= */
+
+@media (hover: none) and (pointer: coarse) {
+    .project-card:hover {
+        transform: none;
+
+        box-shadow: none;
+    }
+
+    .project-card:active {
+        transform: translateY(-2px);
+    }
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+    .project-card {
+        transition: none;
+    }
+}
+
+
+
+@media (max-width: 600px) {
+    .project-list {
+        grid-template-columns: 1fr;
+        gap: 0.8rem;
+    }
+}
+
 
 /* =========================================================
    TABLET
