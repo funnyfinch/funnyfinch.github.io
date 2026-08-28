@@ -36,11 +36,56 @@
 }
 
 .tutorial-footer {
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    justify-content: center;
+    align-items: center;
 }
 
 .tutorial-follow-button {
     justify-self: end;
+    color: var(--bg);
+    border: 1px solid var(--line);
+    border-radius: var(--corner-radius);
+    padding: 0.2rem 2rem;
+}
+
+.tutorial-follow-button:hover {
+    animation: card-hover 0.2s ease;
+    animation-fill-mode: both;
+}
+
+@keyframes card-hover {
+    from {
+        transform: translateY(0);
+        box-shadow: none;
+    }
+
+    to {
+        transform: translateY(-4px);
+        box-shadow: 0 5px 10px var(--line);
+    }
+}
+
+.bi-arrow-diagonal {
+    transform: rotate(-135deg);
+    margin-top: 15%;
+    color: var(--opposite-bg);
+    animation: arrow-bounce 1.5s ease-in-out infinite;
+}
+
+@keyframes arrow-bounce {
+    0%, 100% {
+        transform:
+            rotate(-135deg)
+            translateY(-2px);
+    }
+
+    50% {
+        transform:
+            rotate(-135deg)
+            translateY(2px);
+    }
 }
 
 .tutorial-card-tag {
@@ -64,31 +109,36 @@
 }
 
 
-.tutorial-card:hover,
-.tutorial-card:focus-visible {
-    animation: card-hover 0.2s ease;
-    animation-fill-mode: both;
-}
-
-@keyframes card-hover {
-    from {
-        transform: translateY(0);
-        box-shadow: none;
-    }
-
-    to {
-        transform: translateY(-6px);
-        box-shadow: 0 5px 20px var(--line);
-    }
-}
-
 .tutorial-covers-wrapper {
     display: flex;
     flex-direction: column;
+    position: relative;
+}
+
+.tutorial-covers-fade {
+    height: 2.5rem;
+
+    margin-top: -2.5rem;
+
+    position: relative;
+    z-index: 2;
+
+    pointer-events: none;
+    border-radius: var(--corner-radius);
+
+    background: linear-gradient(
+        to bottom,
+        transparent,
+        var(--card-fade)
+    );
+}
+
+.tutorial-covers-wrapper.expanded .tutorial-covers-fade {
+    display: none;
 }
 
 .tutorial-covers {
-    margin: 0 0 1.5rem 0;
+    margin: 0;
     padding-left: 1.25rem;
 }
 
@@ -101,15 +151,18 @@
 }
 
 .tutorial-covers-toggle {
-    margin-top: 0.75rem;
-    align-self: flex-start;
+    position: relative;
+    z-index: 3;
+
+    width: 100%;
 
     border: 0;
-    padding: 0;
-
     background: none;
-    font: inherit;
     cursor: pointer;
+
+    padding: 0.5rem 0;
+
+    font: inherit;
 }
 
 .show-less {

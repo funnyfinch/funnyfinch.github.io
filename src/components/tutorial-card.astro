@@ -14,7 +14,17 @@ const { href, title, description, tags } = Astro.props
 <div class="tutorial-card">
     <p class="tutorial-card-title">{title}</p>
     <p class="tutorial-card-description">{description}</p>
-    <slot />
+
+    <h3 class="tutorial-covers-label">covers:</h2>
+    <div class="tutorial-covers-wrapper">
+        <slot />
+        <div class="tutorial-covers-fade"></div>
+        <button class="tutorial-covers-toggle" type="button">
+            <span class="show-more">show more</span>
+            <span class="show-less">show less</span>
+        </button>
+    </div>
+
     <div class="tutorial-footer">
         <div class="tutorial-card-tags">
             {tags.map((tag) => (
@@ -22,7 +32,17 @@ const { href, title, description, tags } = Astro.props
             ))}
         </div>
 
-        <a class="tutorial-follow-button" href={href}>go to</a>
+        <a class="tutorial-follow-button" href={href}>
+            <svg width="24" height="24" fill="currentColor" class="bi-arrow-diagonal" viewBox="0 0 16 16">
+                <path
+                fill-rule="evenodd"
+                d="M8 2a.5.5 0 0 1 .5.5v8.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L7.5 11.293V2.5A.5.5 0 0 1 8 2"
+                stroke="currentColor"
+                stroke-width="1"
+                stroke-linejoin="round"
+                />
+            </svg>
+        </a>
     </div>
     
 </a>

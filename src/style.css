@@ -24,10 +24,12 @@
     --nav-shadow: rgba(0, 0, 0, 0.15);
     --shadow-dark: rgba(0, 0, 0, 0.2);
 
-    --code-bg: #05131b;
+    --code-bg: #0c1418;
     --code-text: #e7f5fa;
     --inline-code-bg: rgba(129, 129, 129, 0.085);
     --inline-code-text: #e7f2f9;
+
+    --card-fade: rgba(8, 9, 27, 0.156);
 
     --muted: #798a92;
 
@@ -71,9 +73,11 @@
 
     --hover-surface: rgba(236, 241, 242, 0.72);
 
-    --code-bg: #081e2b;
+    --code-bg: #1f262b;
     --inline-code-bg: rgba(129, 129, 129, 0.085);
     --inline-code-text: #112530;
+
+    --card-fade: rgba(11, 11, 11, 0.034);
 
     --corner-radius: 0.7rem;
 
@@ -111,10 +115,15 @@ a, p {
     color: var(--text-main)
 }
 
-
+html,
+body {
+    min-height: 100%;
+}
 
 body {
     margin: 0;
+    overflow-x: clip;
+    overflow-y: visible;
     background-color: var(--bg)
 }
 
@@ -161,11 +170,6 @@ body {
 
         height: 72px;
         padding: 0rem 1.5rem;
-
-        animation: header-scroll linear;
-        animation-timeline: scroll();
-        animation-range: 50vh 100vh;
-        animation-fill-mode: both;
     }
 
     .brandmark {
@@ -442,30 +446,25 @@ body {
 
     .docs-shell {
         display: grid;
-
         grid-template-columns: 260px minmax(0, 1fr);
         gap: 2rem;
+
         width: min(1200px, calc(100% - 2rem));
-
-        height: calc(100vh - 120px);
-
         margin: 2rem auto;
-
-        min-height: 0;
     }
 
     .docs-shell h1 {
         margin: 0;
     }
 
+    
     .docs-sidebar {
-        min-width: 0;
-        min-height: 0;
+        position: sticky;
+        top: 72px;
+        align-self: start;
 
+        max-height: calc(100vh - 72px - 2rem);
         overflow-y: auto;
-
-        scrollbar-width: none;
-        -ms-overflow-style: none;
     }
 
     .docs-sidebar::-webkit-scrollbar {
@@ -512,11 +511,24 @@ body {
 
         padding-left: 0.75rem;
         border-left: 2px solid var(--accent);
+        display: none;
+    }
+
+    .docs-navigation div:has(> a.active) > .docs-entry-toc {
+        display: block;
+    }
+
+    .docs-entry-toc:has(> a.active) {
+        display: block;
     }
 
     .docs-entry-toc a {
         display: block;
         padding-left: calc((var(--depth) - 1.5) * 1.5rem);
+    }
+
+    .markdown a {
+        text-decoration: underline;
     }
 
     .docs-content h1,
@@ -526,17 +538,22 @@ body {
     .docs-content h5,
     .docs-content h6 {
         scroll-margin-top: 72px;
+        margin-bottom: 0;
     }
 
 
     /* callouts */
+
+    .markdown ul {
+        margin: 0;
+    }
 
     .callout {
         margin: 1.5rem 0;
         padding: 1rem 1.25rem;
 
         border: 1px solid var(--line-strong);
-        border-left: 4px solid var(--accent);
+        border-left: 4px solid var(--callout-color);
         border-radius: 0.5rem;
 
         background: var(--hover-surface);
@@ -549,7 +566,7 @@ body {
         font-weight: 700;
         letter-spacing: 0.08em;
 
-        color: var(--accent);
+        color: var(--callout-color);
     }
 
     .callout-content {
@@ -563,3 +580,13 @@ body {
     .callout-content > :last-child {
         margin-bottom: 0;
     }
+
+    .callout-note,
+    .callout-tip {
+        --callout-color: var(--accent);
+    }
+
+    .callout-warn {
+        --callout-color: #ff8952;
+    }
+

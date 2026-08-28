@@ -1,9 +1,55 @@
 ---
-interface Props {
-    html: string
+import Layout from "./layout.astro"
+
+interface TocEntry {
+    title: string
+    slug: string
+    depth: number
 }
 
-const { html } = Astro.props
+interface Props {
+    html: string
+    title?: string
+    toc?: TocEntry[]
+}
+
+const {
+    html,
+    title,
+    toc = []
+} = Astro.props
 ---
 
-<div class="markdown" set:html={html} />
+<Layout>
+    <Fragment slot="body">
+        <slot />
+
+        <div class="docs-shell">
+            <aside class="docs-sidebar">
+                {toc.length > 0 && (
+                    <nav class="docs-entry-toc">
+                        {toc.map((entry) => (
+                            <a
+                                href={`#${entry.slug}`}
+                                style={`--depth: ${entry.depth}`}
+                                class="active"
+                            >
+                                {entry.title}
+                            </a>
+                        ))}
+                    </nav>
+                )}
+            </aside>
+
+            <main class="docs-content">
+                <div class="docs-content__inner">
+                    <article class="markdown">
+                        {title && <h1>{title}</h1>}
+
+                        <Fragment set:html={html} />
+                    </article>
+                </div>
+            </main>
+        </div>
+    </Fragment>
+</Layout>

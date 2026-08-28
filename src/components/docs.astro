@@ -1,13 +1,13 @@
 ---
 import Layout from "./layout.astro"
 import Markdown from "./markdown.astro"
+
 import "../style.css"
 
 interface TocEntry {
     title: string
     slug: string
     depth: number
-
 }
 
 interface Document {
@@ -35,7 +35,6 @@ const {
 ---
 
 <Layout>
-
     <Fragment slot="head">
         <link
             rel="stylesheet"
@@ -44,14 +43,19 @@ const {
     </Fragment>
 
     <Fragment slot="body">
-
         <slot />
 
         <div class="docs-shell">
 
             <aside class="docs-sidebar">
 
-                <h2 style={`margin-top: 0.4rem; display: ${navTitle ? "flex" : "none"}`}>{navTitle}</h1>
+                <h2
+                    style={`margin-top: 0.4rem; display: ${
+                        navTitle ? "flex" : "none"
+                    }`}
+                >
+                    {navTitle}
+                </h2>
 
                 <nav class="docs-navigation">
 
@@ -69,7 +73,6 @@ const {
                             </a>
 
                             {item.toc.length > 0 && (
-
                                 <nav class="docs-entry-toc">
 
                                     {item.toc.map((entry) => (
@@ -84,7 +87,6 @@ const {
                                     ))}
 
                                 </nav>
-
                             )}
 
                         </div>
@@ -97,9 +99,17 @@ const {
 
             <main class="docs-content">
 
-                <h1>{document.title}</h1>
+                <div class="docs-content__inner">
 
-                <Markdown html={document.html} />
+                    <article class="markdown">
+
+                        <h1>{document.title}</h1>
+
+                        <Fragment set:html={document.html} />
+
+                    </article>
+
+                </div>
 
             </main>
 
@@ -122,7 +132,5 @@ const {
                     Prism.highlightElement(element)
                 })
         </script>
-
     </Fragment>
-
 </Layout>

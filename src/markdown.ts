@@ -3,7 +3,7 @@ import { marked } from "marked"
 type CalloutType =
     | "tip"
     | "info"
-    | "warning"
+    | "warn"
     | "danger"
     | "note"
 
@@ -40,7 +40,7 @@ function escapeHtml(text: string): string {
         .replace(/</g, "&lt;")
         .replace(/>/g, "&gt;")
         .replace(/"/g, "&quot;")
-        .replace(/'/g, "&#039;")
+        .replace(/'/g, "&#39;")
 }
 
 const renderer = new marked.Renderer()
@@ -48,13 +48,11 @@ const renderer = new marked.Renderer()
 renderer.heading = function ({ tokens, depth }) {
     const text = this.parser.parseInline(tokens)
     const slug = slugify(text)
-
     return `<h${depth} id="${slug}">${text}</h${depth}>\n`
 }
 
 const calloutExtension = {
     name: "callout",
-
     level: "block" as const,
 
     start(src: string) {
@@ -64,7 +62,7 @@ const calloutExtension = {
 
     tokenizer(src: string) {
         const match = src.match(
-            /^:::\s*(tip|info|warning|danger|note)(?:\s+(.+?))?\s*\n([\s\S]*?)\n:::\s*(?:\n|$)/
+            /^:::[ \t]*(tip|info|warn|danger|note)(?:[ \t]+(.+?))?[ \t]*\n([\s\S]*?)\n:::[ \t]*(?:\n|$)/
         )
 
         if (!match) {
@@ -92,7 +90,6 @@ const calloutExtension = {
                 <div class="callout-title">
                     ${escapeHtml(callout.title)}
                 </div>
-
                 <div class="callout-content">
                     ${marked.parse(callout.text)}
                 </div>
@@ -101,17 +98,15 @@ const calloutExtension = {
     },
 }
 
+
 marked.use({
     renderer,
-    extensions: [
-        calloutExtension,
-    ],
+    extensions: [calloutExtension],
 })
 
 export async function parseMarkdown(
     source: string
 ): Promise<MarkdownDocument> {
-
     const toc: TocEntry[] = []
 
     const html = await marked.parse(source, {

@@ -1,10 +1,21 @@
 ---
-import Layout from "../../../components/layout.astro";
+import Markdown from "../../../components/markdown.astro"
+import { parseMarkdown } from "../../../markdown"
+import fs from "node:fs"
 import SubNav from "../nav.astro"
+
+const markdownDocument = await parseMarkdown(
+    fs.readFileSync(
+        "src/pages/content/installation.md",
+        "utf8"
+    )
+)
 ---
 
-<Layout>
-    <Fragment slot="body">
-        <SubNav />
-    </Fragment>
-</Layout>
+<Markdown
+    title="installation"
+    html={markdownDocument.html}
+    toc={markdownDocument.toc}
+>
+    <SubNav />
+</Markdown>

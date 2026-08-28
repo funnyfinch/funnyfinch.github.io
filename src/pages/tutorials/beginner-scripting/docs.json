@@ -1,6 +1,10 @@
 {
     "docs": [
         "overview",
-        "getting-comfortable"
+        "studio-basics",
+        "variables",
+        "functions",
+        "tables",
+        "ModuleScripts"
     ]
 }
