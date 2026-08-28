@@ -1,0 +1,19 @@
+{
+    "docs": [
+        "cleaner",
+        "signal",
+        "state",
+        "schemas",
+        "network",
+        "players",
+        "lifecycle",
+        "scheduler",
+        "async",
+        "metatable",
+        "motion",
+        "leader",
+        "log",
+        "ui",
+        "console"
+    ]
+}

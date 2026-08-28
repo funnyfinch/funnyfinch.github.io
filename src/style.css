@@ -1,14 +1,17 @@
 :root {
     color-scheme: dark;
+
     --bg: #18242f;
     --bg-secondary: #1b2733;
     --opposite-bg: #f8f8f8;
     --header-bg: #dde6eb;
     --pill-bg: #4ec6e4;
+
     --accent: #30baff;
     --accent-deep: #28a6e5;
     --accent-soft: rgba(46, 181, 246, 0.14);
     --accent-dark: #2e6782;
+
     --text-main: #fcfdfe;
     --text-secondary: #d8dee3;
     --text-alt: #959fa4;
@@ -16,8 +19,8 @@
     --text-light-secondary: #c4ccd4;
     --text-dark: #212837;
     --text-mid: #475367;
-    --nav-blur: 10px;
 
+    --nav-blur: 10px;
     --hover-surface: rgba(148, 226, 255, 0.03);
 
     --shadow: rgba(0, 0, 0, 0.05);
@@ -26,11 +29,11 @@
 
     --code-bg: #0c1418;
     --code-text: #e7f5fa;
+
     --inline-code-bg: rgba(129, 129, 129, 0.085);
     --inline-code-text: #e7f2f9;
 
     --card-fade: rgba(8, 9, 27, 0.156);
-
     --muted: #798a92;
 
     --corner-radius: 0.7rem;
@@ -42,25 +45,30 @@
 
     --header-action-size: 55%;
 
+    --scrollbar-track: transparent;
+    --scrollbar-thumb: rgba(196, 235, 247, 0.16);
+
+    --scroll-offset: 72px;
+
     font-family:
         "Baloo Da 2",
         sans-serif;
-
-    --scrollbar-track: transparent;
-    --scrollbar-thumb: rgba(196, 235, 247, 0.16);
 }
 
 [data-theme="light"] {
     color-scheme: light;
+
     --bg: #f3fdfd;
     --bg-secondary: #f8fefe;
     --opposite-bg: #18242f;
     --header-bg: #dee5e9;
     --pill-bg: #4ec6e4;
+
     --accent: #30baff;
     --accent-deep: #28a6e5;
     --accent-soft: rgba(46, 181, 246, 0.14);
     --accent-dark: #2e6782;
+
     --text-main: #202634;
     --text-secondary: #424b62;
     --text-alt: #8c91a2;
@@ -70,10 +78,10 @@
 
     --shadow: rgba(0, 0, 0, 0.05);
     --nav-shadow: rgba(0, 0, 0, 0.05);
-
     --hover-surface: rgba(236, 241, 242, 0.72);
 
     --code-bg: #1f262b;
+
     --inline-code-bg: rgba(129, 129, 129, 0.085);
     --inline-code-text: #112530;
 
@@ -86,13 +94,14 @@
     --line: rgba(20, 58, 78, 0.2);
     --line-dark: rgba(20, 58, 78, 0.3);
 
-    font-family:
-        "Baloo Da 2",
-        sans-serif;
-
     --scrollbar-track: transparent;
     --scrollbar-thumb: rgba(20, 58, 78, 0.16);
 }
+
+
+/* =========================================================
+   BASE
+   ========================================================= */
 
 html {
     scroll-behavior: smooth;
@@ -101,18 +110,24 @@ html {
     scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
 }
 
+html:has(.sub-nav) {
+    --scroll-offset: 122px;
+}
+
 * {
     text-decoration: none;
     box-sizing: border-box;
+
     transition:
         background-color 250ms ease,
         box-shadow 250ms ease,
-        color 250ms ease
+        color 250ms ease;
 }
 
-a, p {
+a,
+p {
     margin: 0;
-    color: var(--text-main)
+    color: var(--text-main);
 }
 
 html,
@@ -124,227 +139,278 @@ body {
     margin: 0;
     overflow-x: clip;
     overflow-y: visible;
-    background-color: var(--bg)
+    background-color: var(--bg);
 }
 
-/* header */
 
-    @property --header-text {
-        syntax: "<color>";
-        inherits: true;
-        initial-value: white;
-    }
+/* =========================================================
+   HEADER
+   ========================================================= */
 
-    @keyframes header-scroll {
-        from {
-            /* backdrop-filter: blur(0px);
-            --header-text: white; */
-            /* background: transparent; */
-        }
+@property --header-text {
+    syntax: "<color>";
+    inherits: true;
+    initial-value: white;
+}
 
-        to {
-            /* backdrop-filter: blur(20px);
-            --header-text: black; */
-            /* background: rgb(from var(--opposite-bg) r g b / calc(alpha * 0.9)); */
-        }
-    }
-
-    .header {
+@keyframes header-scroll {
+    from {
+        /*
+        backdrop-filter: blur(0px);
         --header-text: white;
-        position: sticky;
-        top: 0;
-
-        width: 100%;
-        box-sizing: border-box;
-        background: var(--header-bg);
-        z-index: 10;
-
-        backdrop-filter: blur(var(--nav-blur));
-
-        display: grid;
-        grid-template-columns: 1fr auto 1fr;
-
-        align-items: center;
         background: transparent;
-        box-shadow: 0 5px 3px var(--nav-shadow);
-
-        height: 72px;
-        padding: 0rem 1.5rem;
+        */
     }
 
-    .brandmark {
-        justify-self: start;
-
-        display: inline-flex;
-        align-items: center;
-        gap: 0.75rem;
-
-        text-decoration: none;
-        line-height: 1;
+    to {
+        /*
+        backdrop-filter: blur(20px);
+        --header-text: black;
+        background: rgb(
+            from var(--opposite-bg)
+            r g b /
+            calc(alpha * 0.9)
+        );
+        */
     }
+}
 
-    .brandmark-logo {
-        width: 30px;
-        height: 30px;
-        flex: 0 0 auto;
+.header {
+    --header-text: white;
 
-        mask: url("/public/assets/logo.svg") center / contain no-repeat;
-        -webkit-mask: url("/public/assets/logo.svg") center / contain no-repeat;
+    position: sticky;
+    top: 0;
 
-        background-color: var(--accent);
-    }
+    width: 100%;
+    height: 72px;
 
-    .brandmark-text {
-        font-family:
-            "Baloo Da 2",
-            sans-serif;
+    padding: 0 1.5rem;
 
-        font-weight: 700;
-        font-size: 1.45rem;
-        
-        color: var(--accent)
-    }
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
 
-/* */
+    box-sizing: border-box;
 
-    /* pills */
+    background: color-mix(
+        in srgb,
+        var(--bg) 30%,
+        transparent
+    );
 
-    .header__nav {
-        display: flex;
-        justify-self: center;
-        align-items: center;
-        height: 50%;
-    }
+    backdrop-filter: blur(var(--nav-blur));
 
-    .pill {
-        display: inline-flex;
-        align-items: center;
+    box-shadow: 0 5px 3px var(--nav-shadow);
 
-        border-radius: var(--corner-radius);
+    z-index: 10;
+}
 
-        text-decoration: none;
+.brandmark {
+    justify-self: start;
 
-        color: var(--text-main);
+    display: inline-flex;
+    align-items: center;
 
-        height: 100%;
-        font-size: 1rem;
-        font-weight: 700;
+    gap: 0.75rem;
 
-        padding: 0rem 0.8rem;
+    text-decoration: none;
+    line-height: 1;
 
-        transition:
-            color 140ms ease,
-            background 140ms ease;
-    }
+    min-width: 0;
+}
 
-    .pill:hover,
-    .pill:focus-visible {
-        color: var(--accent);
+.brandmark-logo {
+    width: 30px;
+    height: 30px;
 
-        background: var(--hover-surface);
-    }
+    flex: 0 0 auto;
 
-    .pill[aria-current="page"] {
-        color: var(--bg);
+    mask: url("/public/assets/logo.svg") center / contain no-repeat;
+    -webkit-mask: url("/public/assets/logo.svg") center / contain no-repeat;
 
-        background: var(--opposite-bg);
+    background-color: var(--accent);
+}
 
-        box-shadow:
-            inset 0 0 0 1px var(--line);
-    }
+.brandmark-text {
+    font-family:
+        "Baloo Da 2",
+        sans-serif;
+
+    font-weight: 700;
+    font-size: 1.45rem;
+
+    color: var(--accent);
+
+    white-space: nowrap;
+}
 
 
-/* site header */
+/* =========================================================
+   HEADER NAVIGATION
+   ========================================================= */
 
-    /* actions */
-    
-    .header__buttons {
-        display: inline-flex;
-        justify-self: end;
-        align-items: end;
-        gap: 1rem;
-        text-decoration: none;
-        /* line-height: 1; */
-    }
+.header__nav {
+    display: flex;
+    justify-self: center;
+    align-items: center;
 
-    .header__button {
-        width: 30px;
-        height: 30px;
-        padding: 0;
-        flex: 0 0 auto;
-        background: white;
-        border-radius: 100%;
-        border: none;
+    height: 50%;
 
-        border: 2px solid var(--line);
+    min-width: 0;
+}
 
-        display: flex;
-        justify-content: center;
-        align-items: center;
+.pill {
+    display: inline-flex;
+    align-items: center;
 
-        transition: transform 100ms ease;
-    }
+    border-radius: var(--corner-radius);
 
-    .header__button:active {
-        transform: scale(75%) rotate(15deg);
-    }
+    text-decoration: none;
+    color: var(--text-main);
 
-    .github-button {
-        width: var(--header-action-size);
-        height: var(--header-action-size);
+    height: 100%;
 
-        background-color: var(--opposite-bg);
+    font-size: 1rem;
+    font-weight: 700;
 
-        mask: url("public/assets/github.svg") center / contain no-repeat;
-        -webkit-mask: url("/public/assets/github.svg") center / contain no-repeat;
-    }
+    padding: 0 0.8rem;
 
-    .theme-toggle {
-        border-radius: 100%;
-        cursor: pointer;
-        color: white;
-    }
+    transition:
+        color 140ms ease,
+        background 140ms ease;
 
-    .theme-toggle__button {
-        width: var(--header-action-size);
-        height: var(--header-action-size);
-    }
+    white-space: nowrap;
+}
 
-    .theme-toggle__sun,
-    .theme-toggle__moon {
-        display: none;
-    }
+.pill:hover,
+.pill:focus-visible {
+    color: var(--accent);
+    background: var(--hover-surface);
+}
 
-    [data-theme="dark"] .header__button {
-        background-color: transparent;
-    }
+.pill[aria-current="page"] {
+    color: var(--bg);
 
-    [data-theme="light"] .theme-toggle__sun {
-        display: block;
-        color: #3c3e43;
-    }
+    background: var(--opposite-bg);
 
-    [data-theme="dark"] .theme-toggle__moon {
-        display: block;
-    }
+    box-shadow:
+        inset 0 0 0 1px var(--line);
+}
 
+
+/* =========================================================
+   HEADER ACTIONS
+   ========================================================= */
+
+.header__buttons {
+    display: inline-flex;
+
+    justify-self: end;
+    align-items: center;
+
+    gap: 1rem;
+
+    text-decoration: none;
+
+    min-width: 0;
+}
+
+.header__button {
+    width: 30px;
+    height: 30px;
+
+    padding: 0;
+
+    flex: 0 0 auto;
+
+    background: white;
+
+    border-radius: 100%;
+    border: 2px solid var(--line);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    transition:
+        transform 100ms ease;
+}
+
+.header__button:active {
+    transform: scale(75%) rotate(15deg);
+}
+
+.github-button {
+    width: var(--header-action-size);
+    height: var(--header-action-size);
+
+    background-color: var(--opposite-bg);
+
+    mask: url("/public/assets/github.svg") center / contain no-repeat;
+    -webkit-mask: url("/public/assets/github.svg") center / contain no-repeat;
+}
+
+.theme-toggle {
+    border-radius: 100%;
+    cursor: pointer;
+    color: white;
+}
+
+.theme-toggle__button {
+    width: var(--header-action-size);
+    height: var(--header-action-size);
+}
+
+.theme-toggle__sun,
+.theme-toggle__moon {
+    display: none;
+}
+
+[data-theme="dark"] .header__button {
+    background-color: transparent;
+}
+
+[data-theme="light"] .theme-toggle__sun {
+    display: block;
+    color: #3c3e43;
+}
+
+[data-theme="dark"] .theme-toggle__moon {
+    display: block;
+}
+
+
+/* =========================================================
+   TYPEWRITER
+   ========================================================= */
 
 .typewriter {
     color: var(--accent-dark);
+
     font-weight: 500;
     font-size: 2rem;
+
     height: 2rem;
+
+    max-width: 100%;
 }
 
 .typewriter::after {
     content: "";
+
     display: inline-block;
+
     width: 0.12em;
     height: 0.85em;
+
     margin-left: 0.1em;
+
     vertical-align: -0.08em;
+
     background: var(--accent-dark);
-    animation: typewriter-cursor 1s steps(1) infinite;
+
+    animation:
+        typewriter-cursor 1s steps(1) infinite;
 }
 
 @keyframes typewriter-cursor {
@@ -359,234 +425,787 @@ body {
     }
 }
 
+
+/* =========================================================
+   GENERAL CONTENT
+   ========================================================= */
+
 .content {
+    width: 100%;
+
     padding: 3rem 9rem;
     padding-bottom: 3rem;
+
+    min-width: 0;
 }
+
+
+/* =========================================================
+   SUB NAVIGATION
+   ========================================================= */
 
 .sub-nav {
     width: 100%;
     height: 50px;
+
     top: 72px;
+
     position: sticky;
-    background: none;
+
+    background: color-mix(
+        in srgb,
+        var(--bg) 20%,
+        transparent
+    );
+
     box-shadow: 0 5px 3px var(--shadow);
+
     backdrop-filter: blur(var(--nav-blur));
+
     z-index: 9;
 
     display: flex;
     justify-content: center;
     align-items: center;
+
     padding: 0 1.5rem;
+
+    min-width: 0;
 }
 
 .sub-nav-container {
     height: 30px;
+
     display: flex;
     align-items: center;
     justify-content: center;
+
+    min-width: 0;
 }
 
 
-/* markdown */
+/* =========================================================
+   MARKDOWN
+   ========================================================= */
 
-    .markdown {
+.markdown {
+    min-width: 0;
+    max-width: 100%;
+}
 
+.markdown code {
+    font-family:
+        Consolas,
+        "Courier New",
+        monospace;
+
+    font-size: 0.95em;
+}
+
+.markdown pre {
+    overflow-x: auto;
+    overflow-y: hidden;
+
+    margin: 1.5rem 0;
+
+    border-radius: 18px;
+
+    padding: 1rem;
+
+    background: var(--code-bg);
+    color: var(--code-text);
+
+    max-width: 100%;
+
+    -webkit-overflow-scrolling: touch;
+}
+
+.markdown pre code {
+    background: transparent;
+
+    padding: 0;
+
+    color: var(--code-text);
+
+    white-space: pre;
+}
+
+.markdown *:not(pre) > code {
+    padding: 0.15em 0.4em;
+
+    border: 1px solid var(--line);
+    border-radius: 0.3em;
+
+    background: var(--inline-code-bg);
+    color: var(--inline-code-text);
+
+    font-size: 0.9em;
+}
+
+.markdown code.language-output {
+    color: var(--muted);
+}
+
+
+/* =========================================================
+   DOCS
+   ========================================================= */
+
+.docs-shell {
+    display: grid;
+
+    grid-template-columns:
+        260px
+        minmax(0, 1fr);
+
+    gap: 2rem;
+
+    width: min(
+        1200px,
+        calc(100% - 2rem)
+    );
+
+    margin: 2rem auto;
+
+    min-width: 0;
+}
+
+.docs-shell h1 {
+    margin: 0;
+}
+
+
+/* =========================================================
+   DOCS SIDEBAR
+   ========================================================= */
+
+.docs-sidebar {
+    position: sticky;
+
+    top: 72px;
+
+    align-self: start;
+
+    max-height:
+        calc(
+            100vh -
+            72px -
+            2rem
+        );
+
+    overflow-y: auto;
+
+    scrollbar-width: none;
+
+    min-width: 0;
+}
+
+.docs-sidebar::-webkit-scrollbar {
+    display: none;
+}
+
+.docs-navigation {
+    min-width: 0;
+}
+
+.docs-navigation div > a {
+    display: block;
+
+    padding: 0.45rem 0.75rem;
+
+    color: var(--muted);
+
+    font-weight: 600;
+}
+
+.docs-navigation a {
+    padding-left: 1rem;
+
+    border-radius: var(--corner-radius);
+
+    transition:
+        color 140ms ease,
+        background 140ms ease;
+
+    min-width: 0;
+}
+
+.docs-navigation > .docs-entry > a {
+    display: flex;
+
+    align-items: center;
+
+    height: 2rem;
+
+    padding: 0 0.75rem;
+
+    line-height: normal;
+}
+
+.docs-navigation a:hover {
+    background: var(--hover-surface);
+}
+
+.docs-navigation a.active {
+    color: var(--accent);
+    background: var(--accent-soft);
+}
+
+.docs-sidebar__list,
+.toc-list {
+    list-style: none;
+
+    margin-top: 0;
+    padding: 0;
+
+    min-width: 0;
+}
+
+.docs-entry-toc {
+    margin:
+        0.25rem
+        0.75rem
+        0.75rem;
+
+    padding-left: 0.75rem;
+
+    border-left: 2px solid var(--accent);
+
+    display: none;
+
+    min-width: 0;
+}
+
+.docs-navigation div:has(> a.active) > .docs-entry-toc {
+    display: block;
+}
+
+.docs-entry-toc:has(> a.active) {
+    display: block;
+}
+
+.docs-entry-toc a {
+    display: block;
+
+    padding-left:
+        calc(
+            (var(--depth) - 1.5) * 1.5rem
+        );
+
+    overflow-wrap: anywhere;
+}
+
+.markdown a {
+    text-decoration: underline;
+}
+
+.docs-content {
+    min-width: 0;
+    max-width: 100%;
+}
+
+.docs-content h1,
+.docs-content h2,
+.docs-content h3,
+.docs-content h4,
+.docs-content h5,
+.docs-content h6 {
+    scroll-margin-top: var(--scroll-offset);
+
+    margin-bottom: 0;
+}
+
+
+/* =========================================================
+   CALLOUTS
+   ========================================================= */
+
+.markdown ul {
+    margin: 0;
+}
+
+.callout {
+    margin: 1.5rem 0;
+
+    padding: 1rem 1.25rem;
+
+    border: 1px solid var(--line-strong);
+    border-left: 4px solid var(--callout-color);
+
+    border-radius: 0.5rem;
+
+    background: var(--hover-surface);
+
+    max-width: 100%;
+}
+
+.callout-title {
+    margin-bottom: 0;
+
+    font-size: 1.2rem;
+    font-weight: 700;
+
+    letter-spacing: 0.08em;
+
+    color: var(--callout-color);
+}
+
+.callout-content {
+    color: var(--ink);
+
+    min-width: 0;
+}
+
+.callout-content > *:first-child {
+    margin-top: 0;
+}
+
+.callout-content > *:last-child {
+    margin-bottom: 0;
+}
+
+.callout-note,
+.callout-tip {
+    --callout-color: var(--accent);
+}
+
+.callout-warn {
+    --callout-color: #ff8952;
+}
+
+
+/* =========================================================
+   TABLETS / NARROW DESKTOP
+   ========================================================= */
+
+@media (max-width: 1100px) {
+    .content {
+        padding-left: 4rem;
+        padding-right: 4rem;
     }
-
-    .markdown code {
-        font-family:
-            Consolas,
-            "Courier New",
-            monospace;
-
-        font-size:
-            0.95em;
-    }
-
-    .markdown pre {
-        overflow-x: auto;
-
-        margin: 1.5rem 0;
-
-        border-radius: 18px;
-
-        padding: 1rem;
-
-        background: var(--code-bg);
-
-        color: var(--code-text);
-    }
-
-    .markdown pre code {
-        background: transparent;
-
-        padding: 0;
-
-        color: var(--code-text);
-    }
-
-    .markdown :not(pre) > code {
-        padding: 0.15em 0.4em;
-        border: 1px solid var(--line);
-        border-radius: 0.3em;
-
-        background:  var(--inline-code-bg);
-        color: var(--inline-code-text);
-
-        font-size: 0.9em;
-    }
-
-    .markdown code.language-output {
-        color: var(--muted);
-    }
-
-
-/* docs */
 
     .docs-shell {
-        display: grid;
-        grid-template-columns: 260px minmax(0, 1fr);
-        gap: 2rem;
+        width: min(
+            100%,
+            calc(100% - 2rem)
+        );
 
-        width: min(1200px, calc(100% - 2rem));
-        margin: 2rem auto;
+        grid-template-columns:
+            220px
+            minmax(0, 1fr);
+
+        gap: 1.5rem;
     }
 
-    .docs-shell h1 {
-        margin: 0;
+    .pill {
+        padding-left: 0.65rem;
+        padding-right: 0.65rem;
+    }
+}
+
+
+/* =========================================================
+   TABLET / LARGE MOBILE
+   ========================================================= */
+
+@media (max-width: 800px) {
+    :root {
+        --scroll-offset: 62px;
     }
 
-    
+    html:has(.sub-nav) {
+        --scroll-offset: 112px;
+    }
+
+    .header {
+        height: 62px;
+
+        padding-left: 1rem;
+        padding-right: 1rem;
+
+        display: flex;
+        justify-content: space-between;
+
+        gap: 1rem;
+    }
+
+    .brandmark {
+        flex: 0 0 auto;
+    }
+
+    .brandmark-text {
+        font-size: 1.25rem;
+    }
+
+    .brandmark-logo {
+        width: 27px;
+        height: 27px;
+    }
+
+    .header__nav {
+        flex: 1 1 auto;
+
+        justify-content: center;
+
+        overflow-x: auto;
+        overflow-y: hidden;
+
+        scrollbar-width: none;
+
+        min-width: 0;
+    }
+
+    .header__nav::-webkit-scrollbar {
+        display: none;
+    }
+
+    .pill {
+        height: 36px;
+
+        flex: 0 0 auto;
+
+        font-size: 0.95rem;
+
+        padding-left: 0.65rem;
+        padding-right: 0.65rem;
+    }
+
+    .header__buttons {
+        flex: 0 0 auto;
+
+        gap: 0.65rem;
+    }
+
+    .header__button {
+        width: 28px;
+        height: 28px;
+    }
+
+    .sub-nav {
+        top: 62px;
+
+        padding-left: 1rem;
+        padding-right: 1rem;
+
+        justify-content: flex-start;
+
+        overflow-x: auto;
+        overflow-y: hidden;
+
+        scrollbar-width: none;
+    }
+
+    .sub-nav::-webkit-scrollbar {
+        display: none;
+    }
+
+    .sub-nav-container {
+        flex: 0 0 auto;
+
+        justify-content: flex-start;
+    }
+
+    .content {
+        padding:
+            2rem
+            2rem
+            2rem;
+    }
+
+    .docs-shell {
+        display: block;
+
+        width: min(
+            100%,
+            calc(100% - 1rem)
+        );
+
+        margin:
+            1.5rem
+            auto;
+    }
+
     .docs-sidebar {
-        position: sticky;
-        top: 72px;
-        align-self: start;
+        position: static;
 
-        max-height: calc(100vh - 72px - 2rem);
-        overflow-y: auto;
+        max-height: none;
+
+        width: 100%;
+
+        margin-bottom: 1.5rem;
+
+        overflow-x: auto;
+        overflow-y: hidden;
+
+        scrollbar-width: none;
     }
 
     .docs-sidebar::-webkit-scrollbar {
         display: none;
     }
 
-    .docs-navigation div > a {
-        display: block;
-        padding: 0.45rem 0.75rem;
-        color: var(--muted);
-        font-weight: 600;  
+    /*
+     * The sidebar becomes a horizontal navigation
+     * rather than consuming an entire column.
+     */
+    .docs-navigation {
+        display: flex;
+
+        width: max-content;
+        min-width: 100%;
+
+        gap: 0.35rem;
+
+        padding-bottom: 0.25rem;
     }
 
-    .docs-navigation a {
-        padding-left: 1rem;
-        border-radius: var(--corner-radius);
-        transition:
-            color 140ms ease
-            background 140ms ease
+    .docs-navigation > .docs-entry {
+        flex: 0 0 auto;
     }
 
-    .docs-navigation a:hover {
-        background: var(--hover-surface)
+    .docs-navigation > .docs-entry > a {
+        height: 2.25rem;
+
+        white-space: nowrap;
     }
 
-    .docs-navigation div > a.active {
-        color: var(--accent);
-        background: var(--accent-soft)
-    }
-
-    .docs-sidebar__list,
-    .toc-list {
-        list-style: none;
-
-        margin-top: 0;
-        padding: 0;
-    }
-
+    /*
+     * Deep TOCs are hidden in the horizontal
+     * mobile navigation. The document itself
+     * remains responsible for heading navigation.
+     */
     .docs-entry-toc {
-        margin:
-            0.25rem 0
-            0.75rem
+        display: none !important;
+    }
+
+    .docs-content {
+        width: 100%;
+    }
+
+    .typewriter {
+        font-size: 1.7rem;
+        height: 1.8rem;
+    }
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 600px) {
+    :root {
+        --scroll-offset: 58px;
+    }
+
+    html:has(.sub-nav) {
+        --scroll-offset: 108px;
+    }
+
+    .header {
+        height: 58px;
+
+        padding:
+            0
             0.75rem;
 
-        padding-left: 0.75rem;
-        border-left: 2px solid var(--accent);
-        display: none;
+        gap: 0.5rem;
     }
 
-    .docs-navigation div:has(> a.active) > .docs-entry-toc {
-        display: block;
+    /*
+     * Keep the brand compact so the navigation has
+     * room to breathe.
+     */
+    .brandmark {
+        gap: 0.5rem;
     }
 
-    .docs-entry-toc:has(> a.active) {
-        display: block;
+    .brandmark-logo {
+        width: 25px;
+        height: 25px;
     }
 
-    .docs-entry-toc a {
-        display: block;
-        padding-left: calc((var(--depth) - 1.5) * 1.5rem);
+    .brandmark-text {
+        font-size: 1.1rem;
     }
 
-    .markdown a {
-        text-decoration: underline;
+    .header__nav {
+        justify-content: flex-start;
+
+        margin-left: 0.25rem;
+        margin-right: 0.25rem;
     }
 
-    .docs-content h1,
-    .docs-content h2,
-    .docs-content h3,
-    .docs-content h4,
-    .docs-content h5,
-    .docs-content h6 {
-        scroll-margin-top: 72px;
-        margin-bottom: 0;
+    .pill {
+        font-size: 0.9rem;
+
+        height: 34px;
+
+        padding:
+            0
+            0.55rem;
     }
 
+    .header__buttons {
+        gap: 0.4rem;
+    }
 
-    /* callouts */
+    .header__button {
+        width: 26px;
+        height: 26px;
+    }
 
-    .markdown ul {
-        margin: 0;
+    .sub-nav {
+        top: 58px;
+
+        height: 50px;
+
+        padding:
+            0
+            0.75rem;
+    }
+
+    .content {
+        padding:
+            1.5rem
+            1rem
+            2rem;
+    }
+
+    .docs-shell {
+        width: 100%;
+
+        margin:
+            1rem
+            0
+            0;
+    }
+
+    .docs-sidebar {
+        margin-bottom: 1rem;
+    }
+
+    .docs-navigation {
+        gap: 0.25rem;
+    }
+
+    .docs-navigation > .docs-entry > a {
+        height: 2.1rem;
+
+        padding:
+            0
+            0.65rem;
+
+        font-size: 0.9rem;
+    }
+
+    .markdown pre {
+        margin:
+            1.25rem
+            0;
+
+        padding: 0.85rem;
+
+        border-radius: 14px;
+
+        font-size: 0.85rem;
     }
 
     .callout {
-        margin: 1.5rem 0;
-        padding: 1rem 1.25rem;
+        margin:
+            1.25rem
+            0;
 
-        border: 1px solid var(--line-strong);
-        border-left: 4px solid var(--callout-color);
-        border-radius: 0.5rem;
-
-        background: var(--hover-surface);
+        padding:
+            0.85rem
+            1rem;
     }
 
     .callout-title {
-        margin-bottom: 0rem;
-
-        font-size: 1.2rem;
-        font-weight: 700;
-        letter-spacing: 0.08em;
-
-        color: var(--callout-color);
+        font-size: 1.05rem;
     }
 
-    .callout-content {
-        color: var(--ink);
+    .typewriter {
+        font-size: 1.45rem;
+
+        height: 1.6rem;
+    }
+}
+
+
+/* =========================================================
+   VERY SMALL PHONES
+   ========================================================= */
+
+@media (max-width: 420px) {
+    .brandmark-text {
+        display: none;
     }
 
-    .callout-content > :first-child {
-        margin-top: 0;
+    .header__nav {
+        margin-left: 0.15rem;
+        margin-right: 0.15rem;
     }
 
-    .callout-content > :last-child {
-        margin-bottom: 0;
+    .pill {
+        font-size: 0.85rem;
+
+        padding:
+            0
+            0.5rem;
     }
 
-    .callout-note,
-    .callout-tip {
-        --callout-color: var(--accent);
+    .header__buttons {
+        gap: 0.3rem;
     }
 
-    .callout-warn {
-        --callout-color: #ff8952;
+    .header__button {
+        width: 25px;
+        height: 25px;
     }
 
+    .content {
+        padding:
+            1.25rem
+            0.85rem
+            1.75rem;
+    }
+
+    .docs-navigation > .docs-entry > a {
+        font-size: 0.85rem;
+
+        padding:
+            0
+            0.55rem;
+    }
+
+    .markdown pre {
+        font-size: 0.8rem;
+
+        padding: 0.75rem;
+
+        border-radius: 12px;
+    }
+
+    .typewriter {
+        font-size: 1.3rem;
+        height: 1.5rem;
+    }
+}
+
+
+/* =========================================================
+   TOUCH DEVICES
+   ========================================================= */
+
+@media (hover: none) and (pointer: coarse) {
+    .pill:hover,
+    .docs-navigation a:hover {
+        background: transparent;
+    }
+
+    .pill:active,
+    .docs-navigation a:active {
+        background: var(--hover-surface);
+    }
+}

@@ -1,81 +1,148 @@
 :root {
-    --shell-bg: color-mix(in srgb, var(--bg) 90%, rgb(79, 205, 255));
+    --shell-bg: color-mix(
+        in srgb,
+        var(--bg) 90%,
+        rgb(79, 205, 255)
+    );
 }
 
+
+/* =========================================================
+   HERO
+   ========================================================= */
+
 .hero-shell {
-    height: calc(100vh - 72px);
+    min-height: calc(100vh - 72px);
+
     display: flex;
     justify-content: center;
+
     background-color: var(--shell-bg);
+
+    overflow: hidden;
 }
 
 .hero {
     width: 80%;
     height: 80vh;
+
     margin-top: 2rem;
 
     border-radius: 1.2rem;
+
     padding: 2rem 3rem;
+
     display: block;
 
+    position: relative;
     top: 0;
+
     z-index: 0;
-    background: radial-gradient(
-        circle at 80% 70%,
-        #93d9ff,
-        var(--accent)
-    );
-    
-    box-shadow: 0px 0px 15px var(--shadow-dark);
+
+    background:
+        radial-gradient(
+            circle at 80% 70%,
+            #93d9ff,
+            var(--accent)
+        );
+
+    box-shadow:
+        0 0 15px var(--shadow-dark);
+
+    min-width: 0;
 }
 
 .hero-hi {
     margin-top: 3rem;
+
     transform: translateX(1%);
-    color: white;;
+
+    color: white;
+
     font-weight: 500;
     font-size: 1.2rem;
 }
 
 .hero-logo {
     margin-top: 1rem;
+
     transform: translateX(-9%);
+
     width: 30%;
     height: 25%;
+
     mask: url("../../assets/logo-name.svg");
     mask-size: 100% 100%;
+    mask-repeat: no-repeat;
+
+    -webkit-mask: url("../../assets/logo-name.svg");
+    -webkit-mask-size: 100% 100%;
+    -webkit-mask-repeat: no-repeat;
+
     background-color: white;
+}
+
+.hero-typewriter {
+    margin-top: 1.5rem;
+
+    max-width: 100%;
 }
 
 .scroll-buttons {
     margin-top: 4rem;
+
     display: flex;
+
     gap: 0.8rem;
+
+    flex-wrap: wrap;
 }
 
 .scroll-button {
-    padding: 0.3rem 1.5rem;
+    padding:
+        0.3rem
+        1.5rem;
+
     border-radius: var(--corner-radius);
+
     border: none;
+
     color: var(--opposite-bg);
+
     align-items: center;
-    /* height: 2rem; */
     justify-content: center;
+
     font-weight: 600;
     font-size: 1rem;
+
     display: flex;
+
     gap: 5px;
+
     width: fit-content;
+
     background-color: var(--shell-bg);
+
+    cursor: pointer;
+
+    white-space: nowrap;
 }
 
 .scroll-button svg {
     color: var(--opposite-bg);
-    animation: arrow-bounce 1.5s ease-in-out infinite;
+
+    animation:
+        arrow-bounce
+        1.5s
+        ease-in-out
+        infinite;
+
+    flex: 0 0 auto;
 }
 
 @keyframes arrow-bounce {
-    0%, 100% {
+    0%,
+    100% {
         transform: translateY(-2px);
     }
 
@@ -84,74 +151,145 @@
     }
 }
 
-.hero-typewriter {
-    margin-top: 1.5rem;
-}
 
+/* =========================================================
+   SECTION HEADINGS
+   ========================================================= */
 
 h2 {
     font-size: 3rem;
     font-weight: 400;
+
     margin: 0;
+
+    line-height: 1.1;
 }
 
 #project {
     scroll-margin-top: 72px;
+
     display: block;
 }
 
+
+/* =========================================================
+   PROJECTS
+   ========================================================= */
+
 .project-list {
     display: grid;
+
     margin-top: 1rem;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    grid-template-columns:
+        repeat(
+            2,
+            minmax(0, 1fr)
+        );
+
     gap: 1rem;
+
+    min-width: 0;
 }
 
 .project-card {
     position: relative;
+
     display: block;
+
     border: 1px solid var(--line);
+
     border-radius: var(--corner-radius);
-    padding: 1.7rem 1.2rem;
+
+    padding:
+        1.7rem
+        1.2rem;
+
     background-color: var(--bg-secondary);
+
+    min-width: 0;
+
+    transition:
+        transform 200ms ease,
+        box-shadow 200ms ease,
+        background-color 250ms ease,
+        border-color 250ms ease;
 }
 
 .project-card .status {
     color: var(--status-color);
+
     letter-spacing: 0.12em;
+
     width: fit-content;
+
     font-weight: 600;
 
     border-radius: var(--corner-radius);
-    padding: 0 1rem;
-    background-color: color-mix(in srgb, var(--status-color) 10%, transparent);
+
+    padding:
+        0
+        1rem;
+
+    background-color:
+        color-mix(
+            in srgb,
+            var(--status-color) 10%,
+            transparent
+        );
+
+    max-width: 100%;
 }
 
 .project-card-title {
     margin-top: 1rem;
+
     font-size: 1.5rem;
     font-weight: 600;
+
+    overflow-wrap: anywhere;
 }
 
 .project-card-description {
     font-weight: 400;
-    color: var(--text-secondary)
+
+    color: var(--text-secondary);
+
+    overflow-wrap: anywhere;
 }
 
 .project-card-tags {
     margin-top: 1rem;
+
     display: flex;
+
     gap: 0.5rem;
+
+    flex-wrap: wrap;
 }
 
 .project-card-tag {
     color: var(--text-alt);
+
     border: 1px solid var(--line);
+
     width: fit-content;
-    padding: 0 0.7rem;
+
+    padding:
+        0
+        0.7rem;
+
     border-radius: var(--corner-radius);
+
     font-weight: 600;
+
+    white-space: nowrap;
 }
+
+
+/* =========================================================
+   PROJECT STATUS
+   ========================================================= */
 
 .status-active {
     --status-color: #2b7f2a;
@@ -166,44 +304,325 @@ h2 {
 }
 
 
+/* =========================================================
+   PROJECT CARD INTERACTION
+   ========================================================= */
+
 .project-card:hover,
 .project-card:focus-visible {
-    animation: card-hover 0.2s ease;
-    animation-fill-mode: both;
+    transform: translateY(-6px);
+
+    box-shadow:
+        0 5px 20px var(--line);
 }
 
-@keyframes card-hover {
-    from {
-        transform: translateY(0);
-        box-shadow: none;
-    }
-
-    to {
-        transform: translateY(-6px);
-        box-shadow: 0 5px 20px var(--line);
+@media (prefers-reduced-motion: reduce) {
+    .project-card,
+    .scroll-button svg {
+        animation: none;
+        transition: none;
     }
 }
 
-.project-card--featured {
-    
-}
+
+/* =========================================================
+   PROJECT FOOTER
+   ========================================================= */
 
 .project-see-more {
     margin-top: 2rem;
+
     display: block;
+
     justify-self: center;
+
     width: 100%;
     height: 30px;
+
     background-color: var(--opposite-bg);
+
     color: var(--bg);
+
     align-self: center;
+
     text-align: center;
+
     font-weight: 600;
+
     border-radius: var(--corner-radius);
-    padding: 0 1rem;
+
+    padding:
+        0
+        1rem;
+
+    line-height: 30px;
 }
+
+
+/* =========================================================
+   TUTORIALS
+   ========================================================= */
 
 #tutorials {
     margin-top: 5rem;
+
     display: block;
+}
+
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 900px) {
+    .hero-shell {
+        min-height: calc(100vh - 62px);
+    }
+
+    .hero {
+        width: calc(100% - 3rem);
+
+        height: auto;
+        min-height: 70vh;
+
+        margin-top: 1.5rem;
+
+        padding:
+            2rem
+            2.25rem;
+
+        border-radius: 1rem;
+    }
+
+    .hero-hi {
+        margin-top: 2rem;
+
+        font-size: 1.1rem;
+    }
+
+    .hero-logo {
+        width: 45%;
+        height: 22%;
+    }
+
+    .scroll-buttons {
+        margin-top: 3rem;
+    }
+
+    .project-list {
+        grid-template-columns:
+            repeat(
+                2,
+                minmax(0, 1fr)
+            );
+    }
+
+    h2 {
+        font-size: 2.5rem;
+    }
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 600px) {
+    .hero-shell {
+        min-height: calc(100vh - 58px);
+
+        padding-bottom: 1.5rem;
+    }
+
+    .hero {
+        width: calc(100% - 2rem);
+
+        /*
+         * Do not force a viewport-relative height on
+         * mobile. Content should determine the height.
+         */
+        height: auto;
+        min-height: 0;
+
+        margin-top: 1rem;
+
+        padding:
+            1.5rem
+            1.25rem;
+
+        border-radius: 0.9rem;
+    }
+
+    .hero-hi {
+        margin-top: 1rem;
+
+        transform: none;
+
+        font-size: 1rem;
+    }
+
+    /*
+     * The desktop logo uses percentage dimensions,
+     * which become unpredictable on narrow screens.
+     * Give it a sensible bounded size instead.
+     */
+    .hero-logo {
+        width: min(260px, 75%);
+
+        height: 90px;
+
+        margin-top: 0.75rem;
+
+        transform: translateX(-3%);
+    }
+
+    .hero-typewriter {
+        margin-top: 1rem;
+
+        /*
+         * Prevent the cursor/typewriter from creating
+         * horizontal overflow.
+         */
+        max-width: 100%;
+
+        overflow-wrap: anywhere;
+    }
+
+    .scroll-buttons {
+        margin-top: 2rem;
+
+        gap: 0.6rem;
+    }
+
+    .scroll-button {
+        padding:
+            0.3rem
+            1rem;
+
+        font-size: 0.9rem;
+    }
+
+    h2 {
+        font-size: 2.1rem;
+
+        line-height: 1.1;
+    }
+
+    #project {
+        scroll-margin-top: 58px;
+    }
+
+    .project-list {
+        /*
+         * One column is not merely aesthetically cleaner:
+         * it gives descriptions and tags enough horizontal
+         * space to remain legible.
+         */
+        grid-template-columns: 1fr;
+
+        gap: 0.8rem;
+    }
+
+    .project-card {
+        padding:
+            1.35rem
+            1rem;
+    }
+
+    .project-card-title {
+        font-size: 1.3rem;
+    }
+
+    .project-card-description {
+        font-size: 0.95rem;
+    }
+
+    .project-card-tags {
+        gap: 0.4rem;
+    }
+
+    .project-card-tag {
+        font-size: 0.9rem;
+
+        padding:
+            0
+            0.6rem;
+    }
+
+    .project-see-more {
+        margin-top: 1.5rem;
+    }
+
+    #tutorials {
+        margin-top: 3.5rem;
+    }
+}
+
+
+/* =========================================================
+   VERY SMALL PHONES
+   ========================================================= */
+
+@media (max-width: 420px) {
+    .hero {
+        width: calc(100% - 1rem);
+
+        padding:
+            1.25rem
+            1rem;
+
+        border-radius: 0.8rem;
+    }
+
+    .hero-hi {
+        font-size: 0.95rem;
+    }
+
+    .hero-logo {
+        width: min(230px, 85%);
+
+        height: 75px;
+
+        transform: none;
+    }
+
+    .scroll-buttons {
+        width: 100%;
+
+        flex-direction: column;
+
+        align-items: stretch;
+    }
+
+    .scroll-button {
+        width: 100%;
+
+        min-height: 34px;
+    }
+
+    h2 {
+        font-size: 1.9rem;
+    }
+
+    .project-card {
+        padding:
+            1.15rem
+            0.9rem;
+    }
+}
+
+
+/* =========================================================
+   TOUCH DEVICES
+   ========================================================= */
+
+@media (hover: none) and (pointer: coarse) {
+    .project-card:hover {
+        transform: none;
+        box-shadow: none;
+    }
+
+    .project-card:active {
+        transform: translateY(-2px);
+    }
 }

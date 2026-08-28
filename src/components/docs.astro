@@ -60,9 +60,10 @@ const {
                 <nav class="docs-navigation">
 
                     {documents.map((item) => (
-
-                        <div class="docs-entry">
-
+                        <div
+                            class="docs-entry"
+                            data-document={item.slug}
+                        >
                             <a
                                 href={`${basePath}/${item.slug}`}
                                 class:list={{
@@ -74,23 +75,18 @@ const {
 
                             {item.toc.length > 0 && (
                                 <nav class="docs-entry-toc">
-
                                     {item.toc.map((entry) => (
-
                                         <a
                                             href={`${basePath}/${item.slug}#${entry.slug}`}
                                             style={`--depth: ${entry.depth}`}
+                                            data-toc-slug={entry.slug}
                                         >
                                             {entry.title}
                                         </a>
-
                                     ))}
-
                                 </nav>
                             )}
-
                         </div>
-
                     ))}
 
                 </nav>
@@ -101,7 +97,7 @@ const {
 
                 <div class="docs-content__inner">
 
-                    <article class="markdown">
+                    <article class="markdown" data-current-slug={currentSlug}>
 
                         <h1>{document.title}</h1>
 
@@ -123,6 +119,14 @@ const {
                 const: {
                     pattern: /\bconst\b/,
                     alias: "keyword"
+                },
+                export: {
+                    pattern: /\bexport\b/,
+                    alias: "keyword"
+                },
+                type: {
+                    pattern: /\btype\b/,
+                    alias: "keyword"
                 }
             })
 
@@ -132,5 +136,71 @@ const {
                     Prism.highlightElement(element)
                 })
         </script>
+
+        <script>
+            const article = document.querySelector<HTMLElement>(".markdown")
+            const currentSlug = article?.dataset.currentSlug
+
+            if (!currentSlug) {
+                throw new Error("Could not determine current document slug")
+            }
+
+            const tocLinks = Array.from(
+                document.querySelectorAll<HTMLAnchorElement>(
+                    `.docs-entry[data-document="${CSS.escape(currentSlug)}"] [data-toc-slug]`
+                )
+            )
+
+            const headings = Array.from(
+                article?.querySelectorAll<HTMLElement>(
+                    "h2, h3, h4, h5, h6"
+                ) ?? []
+            )
+
+            const updateActiveToc = () => {
+                const offset =
+                    parseFloat(
+                        getComputedStyle(document.documentElement)
+                            .getPropertyValue("--scroll-offset")
+                    ) || 72
+
+                // The heading that has most recently crossed the sticky-header line.
+                let active = headings[0]
+
+                for (const heading of headings) {
+                    if (heading.getBoundingClientRect().top <= offset + 20) {
+                        active = heading
+                    } else {
+                        break
+                    }
+                }
+
+                tocLinks.forEach((link) => {
+                    link.classList.toggle(
+                        "active",
+                        link.dataset.tocSlug === active?.id
+                    )
+                })
+            }
+
+            let ticking = false
+
+            const onScroll = () => {
+                if (!ticking) {
+                    requestAnimationFrame(() => {
+                        updateActiveToc()
+                        ticking = false
+                    })
+
+                    ticking = true
+                }
+            }
+
+            window.addEventListener("scroll", onScroll, { passive: true })
+            window.addEventListener("resize", updateActiveToc)
+
+            updateActiveToc()
+        </script>
+
     </Fragment>
 </Layout>

@@ -1,81 +1,199 @@
+/* =========================================================
+   TUTORIAL HERO
+   ========================================================= */
+
 .tutorial-hero {
     display: flex;
     justify-content: center;
+
     font-size: 1.5rem;
+
+    text-align: center;
+
+    max-width: 100%;
 }
+
+
+/* =========================================================
+   TUTORIAL CARDS
+   ========================================================= */
 
 .tutorial-card {
     position: relative;
+
     display: block;
+
     border: 1px solid var(--line);
+
     border-radius: var(--corner-radius);
-    padding: 1.7rem 1.2rem;
+
+    padding:
+        1.7rem
+        1.2rem;
+
     background-color: var(--bg-secondary);
+
+    min-width: 0;
+
+    transition:
+        transform 200ms ease,
+        box-shadow 200ms ease,
+        background-color 250ms ease,
+        border-color 250ms ease;
 }
 
 .tutorial-cards {
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    grid-template-columns:
+        repeat(
+            2,
+            minmax(0, 1fr)
+        );
+
     gap: 1rem;
+
+    min-width: 0;
 }
 
 .tutorial-card-title {
     font-size: 1.5rem;
+
     font-weight: 600;
+
+    overflow-wrap: anywhere;
 }
 
 .tutorial-card-description {
     font-weight: 400;
-    color: var(--text-secondary)
+
+    color: var(--text-secondary);
+
+    overflow-wrap: anywhere;
 }
 
 .tutorial-card-tags {
     margin-top: 1rem;
+
     display: flex;
+
     gap: 0.5rem;
+
+    flex-wrap: wrap;
 }
+
+.tutorial-card-tag {
+    color: var(--text-alt);
+
+    border: 1px solid var(--line);
+
+    width: fit-content;
+
+    padding:
+        0
+        0.7rem;
+
+    border-radius: var(--corner-radius);
+
+    font-weight: 600;
+
+    white-space: nowrap;
+}
+
+.tutorial-cards code {
+    padding:
+        0.15em
+        0.4em;
+
+    border: 1px solid var(--line);
+
+    border-radius: 0.3em;
+
+    background: var(--inline-code-bg);
+
+    color: var(--inline-code-text);
+
+    font-size: 0.9em;
+
+    overflow-wrap: anywhere;
+}
+
+
+/* =========================================================
+   TUTORIAL FOOTER
+   ========================================================= */
 
 .tutorial-footer {
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    grid-template-columns:
+        repeat(
+            2,
+            minmax(0, 1fr)
+        );
+
     justify-content: center;
+
     align-items: center;
+
+    gap: 1rem;
+
+    min-width: 0;
 }
 
 .tutorial-follow-button {
     justify-self: end;
+
     color: var(--bg);
+
     border: 1px solid var(--line);
+
     border-radius: var(--corner-radius);
-    padding: 0.2rem 2rem;
+
+    padding:
+        0.2rem
+        2rem;
+
+    white-space: nowrap;
+
+    transition:
+        transform 200ms ease,
+        box-shadow 200ms ease,
+        background-color 250ms ease;
 }
 
-.tutorial-follow-button:hover {
-    animation: card-hover 0.2s ease;
-    animation-fill-mode: both;
+.tutorial-follow-button:hover,
+.tutorial-follow-button:focus-visible {
+    transform: translateY(-4px);
+
+    box-shadow:
+        0 5px 10px var(--line);
 }
 
-@keyframes card-hover {
-    from {
-        transform: translateY(0);
-        box-shadow: none;
-    }
 
-    to {
-        transform: translateY(-4px);
-        box-shadow: 0 5px 10px var(--line);
-    }
-}
+/* =========================================================
+   EXTERNAL / DIAGONAL ARROW
+   ========================================================= */
 
 .bi-arrow-diagonal {
     transform: rotate(-135deg);
+
     margin-top: 15%;
+
     color: var(--opposite-bg);
-    animation: arrow-bounce 1.5s ease-in-out infinite;
+
+    animation:
+        arrow-bounce
+        1.5s
+        ease-in-out
+        infinite;
+
+    flex: 0 0 auto;
 }
 
 @keyframes arrow-bounce {
-    0%, 100% {
+    0%,
+    100% {
         transform:
             rotate(-135deg)
             translateY(-2px);
@@ -88,31 +206,19 @@
     }
 }
 
-.tutorial-card-tag {
-    color: var(--text-alt);
-    border: 1px solid var(--line);
-    width: fit-content;
-    padding: 0 0.7rem;
-    border-radius: var(--corner-radius);
-    font-weight: 600;
-}
 
-.tutorial-cards code {
-    padding: 0.15em 0.4em;
-    border: 1px solid var(--line);
-    border-radius: 0.3em;
-
-    background:  var(--inline-code-bg);
-    color: var(--inline-code-text);
-
-    font-size: 0.9em;
-}
-
+/* =========================================================
+   TUTORIAL COVERS
+   ========================================================= */
 
 .tutorial-covers-wrapper {
     display: flex;
+
     flex-direction: column;
+
     position: relative;
+
+    min-width: 0;
 }
 
 .tutorial-covers-fade {
@@ -121,63 +227,276 @@
     margin-top: -2.5rem;
 
     position: relative;
+
     z-index: 2;
 
     pointer-events: none;
+
     border-radius: var(--corner-radius);
 
-    background: linear-gradient(
-        to bottom,
-        transparent,
-        var(--card-fade)
-    );
+    background:
+        linear-gradient(
+            to bottom,
+            transparent,
+            var(--card-fade)
+        );
 }
 
-.tutorial-covers-wrapper.expanded .tutorial-covers-fade {
+.tutorial-covers-wrapper.expanded
+.tutorial-covers-fade {
     display: none;
 }
 
 .tutorial-covers {
     margin: 0;
+
     padding-left: 1.25rem;
+
+    min-width: 0;
+}
+
+.tutorial-covers li {
+    overflow-wrap: anywhere;
 }
 
 .tutorial-covers li:nth-child(n + 4) {
     display: none;
 }
 
-.tutorial-covers-wrapper.expanded .tutorial-covers li:nth-child(n + 4) {
+.tutorial-covers-wrapper.expanded
+.tutorial-covers
+li:nth-child(n + 4) {
     display: list-item;
 }
 
 .tutorial-covers-toggle {
     position: relative;
+
     z-index: 3;
 
     width: 100%;
 
     border: 0;
+
     background: none;
+
     cursor: pointer;
 
-    padding: 0.5rem 0;
+    padding:
+        0.5rem
+        0;
 
     font: inherit;
+
+    color: var(--text-main);
+
+    text-align: left;
 }
 
 .show-less {
     display: none;
 }
 
-.tutorial-covers-wrapper.expanded .show-more {
+.tutorial-covers-wrapper.expanded
+.show-more {
     display: none;
 }
 
-.tutorial-covers-wrapper.expanded .show-less {
+.tutorial-covers-wrapper.expanded
+.show-less {
     display: inline;
 }
 
 .tutorial-covers-label {
-    margin: 1rem 0 0 0;
+    margin:
+        1rem
+        0
+        0;
 }
 
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 800px) {
+    .tutorial-hero {
+        font-size: 1.35rem;
+    }
+
+    .tutorial-cards {
+        gap: 0.8rem;
+    }
+
+    .tutorial-card {
+        padding:
+            1.4rem
+            1rem;
+    }
+
+    .tutorial-card-title {
+        font-size: 1.35rem;
+    }
+
+    .tutorial-footer {
+        gap: 0.75rem;
+    }
+
+    .tutorial-follow-button {
+        padding:
+            0.2rem
+            1.5rem;
+    }
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 600px) {
+    .tutorial-hero {
+        font-size: 1.15rem;
+
+        line-height: 1.3;
+    }
+
+    /*
+     * Two columns become unnecessarily cramped once
+     * the cards have roughly phone-width content.
+     */
+    .tutorial-cards {
+        grid-template-columns: 1fr;
+
+        gap: 0.8rem;
+    }
+
+    .tutorial-card {
+        padding:
+            1.25rem
+            1rem;
+    }
+
+    .tutorial-card-title {
+        font-size: 1.25rem;
+    }
+
+    .tutorial-card-description {
+        font-size: 0.95rem;
+    }
+
+    .tutorial-card-tags {
+        gap: 0.4rem;
+    }
+
+    .tutorial-card-tag {
+        font-size: 0.9rem;
+
+        padding:
+            0
+            0.6rem;
+    }
+
+    /*
+     * The footer is allowed to stack rather than
+     * compressing two independent elements into
+     * tiny columns.
+     */
+    .tutorial-footer {
+        grid-template-columns: 1fr;
+
+        justify-items: stretch;
+
+        gap: 0.75rem;
+    }
+
+    .tutorial-follow-button {
+        justify-self: stretch;
+
+        width: 100%;
+
+        text-align: center;
+
+        padding:
+            0.35rem
+            1rem;
+    }
+
+    .bi-arrow-diagonal {
+        margin-top: 0.5rem;
+
+        justify-self: start;
+    }
+
+    .tutorial-covers {
+        padding-left: 1.1rem;
+    }
+
+    .tutorial-covers-label {
+        margin-top: 0.75rem;
+    }
+}
+
+
+/* =========================================================
+   VERY SMALL PHONES
+   ========================================================= */
+
+@media (max-width: 420px) {
+    .tutorial-hero {
+        font-size: 1.05rem;
+    }
+
+    .tutorial-card {
+        padding:
+            1.1rem
+            0.9rem;
+    }
+
+    .tutorial-card-title {
+        font-size: 1.15rem;
+    }
+
+    .tutorial-card-description {
+        font-size: 0.9rem;
+    }
+
+    .tutorial-card-tag {
+        font-size: 0.85rem;
+    }
+
+    .tutorial-covers {
+        padding-left: 1rem;
+    }
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+    .tutorial-follow-button,
+    .bi-arrow-diagonal {
+        animation: none;
+
+        transition: none;
+    }
+}
+
+
+/* =========================================================
+   TOUCH DEVICES
+   ========================================================= */
+
+@media (hover: none) and (pointer: coarse) {
+    .tutorial-follow-button:hover {
+        transform: none;
+
+        box-shadow: none;
+    }
+
+    .tutorial-follow-button:active {
+        transform: translateY(-2px);
+    }
+}

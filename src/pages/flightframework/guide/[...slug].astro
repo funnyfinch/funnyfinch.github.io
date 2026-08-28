@@ -1,7 +1,8 @@
 ---
 import DocsLayout from "../../../components/docs.astro"
 import { parseMarkdown } from "../../../markdown"
-import docs from "../../content/tutorials/beginner-scripting/docs.json"
+import docs from "../../content/flightframework/guide/docs.json"
+import SubNav from "../nav.astro"
 
 interface Document {
     slug: string
@@ -16,7 +17,7 @@ interface Document {
 
 export async function getStaticPaths() {
     const markdown = import.meta.glob(
-        "../../content/tutorials/beginner-scripting/*.md",
+        "../../../pages/content/flightframework/guide/*.md",
         {
             eager: true,
             query: "?raw",
@@ -25,7 +26,6 @@ export async function getStaticPaths() {
     ) as Record<string, string>
 
     const documents: Document[] = await Promise.all(
-
         docs.docs.map(async (slug) => {
 
             const key = Object.keys(markdown).find(
@@ -34,7 +34,7 @@ export async function getStaticPaths() {
 
             if (!key) {
                 throw new Error(
-                    `Tutorial file not found: ${slug}.md`
+                    `Documentation file not found: ${slug}.md`
                 )
             }
 
@@ -74,6 +74,7 @@ const slug = Astro.params.slug!
     document={document}
     documents={documents}
     currentSlug={slug}
-    basePath="/tutorials/beginner-scripting"
-    navTitle="beginner-scripting"
-/>
+    basePath="/flightframework/guide"
+>
+    <SubNav />
+</DocsLayout>

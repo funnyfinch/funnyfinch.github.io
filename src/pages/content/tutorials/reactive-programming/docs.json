@@ -1,0 +1,9 @@
+{
+    "docs": [
+        "overview",
+        "understand-the-magic",
+        "sources",
+        "observers",
+        "stale-dependencies"
+    ]
+}
