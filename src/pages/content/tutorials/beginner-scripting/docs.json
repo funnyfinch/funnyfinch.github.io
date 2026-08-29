@@ -2,9 +2,6 @@
     "docs": [
         "overview",
         "studio-basics",
-        "variables",
-        "functions",
-        "tables",
-        "ModuleScripts"
+        "rainbow-part"
     ]
 }

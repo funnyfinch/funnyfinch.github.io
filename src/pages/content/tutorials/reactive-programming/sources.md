@@ -14,8 +14,10 @@ we will have 3 core objects in our library:
 first, we will define the source
 ```lua
 export type source<T = any> = {
+    alive: boolean,
     observers: { observer},
     version: number,
+    value: T,
 
     get: (self: source<T>) -> T,
     peek: (self: source<T>) -> T
